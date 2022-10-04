@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { API_URL_SEARCH } from "../pages/api/urls";
+import { API_URL_SEARCH } from "../pages/api/middlewares/urls";
 
 const SearchBar = () => {
     const [inputValue, setInputValue] = useState("");
