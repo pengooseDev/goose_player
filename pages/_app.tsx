@@ -1,8 +1,14 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import Nav from "../components/Nav";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+    return (
+        <>
+            <Nav title={"Home"} />
+            <Component {...pageProps} />
+        </>
+    );
 }
 
-export default MyApp
+export default MyApp;

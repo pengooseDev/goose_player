@@ -1,11 +1,31 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import axios from "axios";
-import type { Article, Articles } from "./api/article";
+//import type { Article, Articles } from "./api/article";
 
-import { useRef } from "react";
+const API_URL_SEARCH = "/api/search";
 
-const API_URL = "/api/article";
+const Home: NextPage = () => {
+    return (
+        <>
+            <>Home</>
+            <SearchBar />
+        </>
+    );
+};
+
+export default Home;
+
+const SearchBar = () => {
+    return (
+        <form method="GET">
+            <div>Search</div>
+            <input type="text"></input>
+        </form>
+    );
+};
+
+/*
 
 const Home: NextPage = () => {
     return (
@@ -90,5 +110,4 @@ const PostArticle = () => {
         </div>
     );
 };
-
-export default Home;
+ */
