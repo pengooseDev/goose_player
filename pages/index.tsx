@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import axios from "axios";
+import SearchBar from "../components/SearchBar";
 //import type { Article, Articles } from "./api/article";
-
-const API_URL_SEARCH = "/api/search";
 
 const Home: NextPage = () => {
     return (
@@ -15,15 +14,6 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-const SearchBar = () => {
-    return (
-        <form method="GET">
-            <div>Search</div>
-            <input type="text"></input>
-        </form>
-    );
-};
 
 /*
 
@@ -72,15 +62,6 @@ const PostArticle = () => {
         //FE -> BE 소통 axios.
         // POST 요청은 아래와 같은 양식으로 보냄.
         const res = await axios.post(API_URL, { title, author, content });
-        //const res = await axios.post(API_URL, { title, author, content });
-
-        // fetch(API_URL, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({ title, author, content }),
-        // });
         if (res.status > 300) {
             console.log("ERROR!!!");
         }
@@ -111,3 +92,14 @@ const PostArticle = () => {
     );
 };
  */
+
+//axios 대신 fetch도 가능.
+//const res = await axios.post(API_URL, { title, author, content });
+
+// fetch(API_URL, {
+//     method: "POST",
+//     headers: {
+//         "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ title, author, content }),
+// });
