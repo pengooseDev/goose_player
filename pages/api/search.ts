@@ -14,28 +14,23 @@ export default async function handler(
         case "GET":
             const searchText1 = req.body;
             console.log("GET", searchText1);
-            res.status(200).redirect("/");
-            return;
+            return res.status(200).redirect("/");
 
         case "POST":
             const { inputValue } = req.body;
             const URL = `https://www.youtube.com/results?search_query=${encodeURI(
                 inputValue
             )}`;
-            console.log("POST : ", inputValue);
-            console.log("URL : ", URL);
+            try {
+                const HTML = await axios.get(URL);
+                console.log("BE:res");
 
-            const data = await axios.get(URL).catch((err) => {
-                console.log(err);
-            });
-
-            console.log("data : ", data);
-
-            res.status(200);
-            //axios.get()
-
-            res.status(200).redirect("/");
-            return;
+                //cheerio 써서 파싱 후 return
+                return res.status(200).json({ data: "HI" });
+            } catch (err) {
+                console.log("BE:ERR", err);
+                return res.status(400).redirect("/");
+            }
 
         case "PUT":
             return;
@@ -43,6 +38,4 @@ export default async function handler(
         case "DELETE":
             return;
     }
-
-    res.status(200).json({ name: "John Doe" });
 }

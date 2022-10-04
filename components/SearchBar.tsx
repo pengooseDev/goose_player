@@ -8,8 +8,14 @@ const SearchBar = () => {
     /* onSubmitHandler */
     const searchHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const res = await axios.post(API_URL_SEARCH, { inputValue });
-        console.log(111, res);
+        try {
+            const res = await axios
+                .post(API_URL_SEARCH, { inputValue })
+                .then((res) => console.log("res : ", res))
+                .catch((e) => console.log("ERR : ", e));
+        } catch (err) {
+            console.log("ERR!", err);
+        }
     };
 
     /* onChangeHandler */

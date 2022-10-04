@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/cheerio": "^0.22.31",
     "@types/styled-components": "^5.1.26",
     "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
