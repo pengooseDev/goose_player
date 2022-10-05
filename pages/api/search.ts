@@ -23,10 +23,15 @@ export default async function handler(
                 inputValue
             )}`;
             try {
-                const {data}= await axios.get(URL);
+                const resData= axios.get(URL).then((res)=>{
+                    JSON.parse(res.data);
+                    console.log(resData)
+                });
+                
                 console.log("BE:res");
-                console.log(data)
-                const $ = cheerio.load(data);
+                //console.log(newData);
+                //console.log(typeof newData)
+                //const $ = cheerio.load(data);
 
                 //cheerio 써서 파싱 후 return
                 return res.status(200).json({data:"hi"});
