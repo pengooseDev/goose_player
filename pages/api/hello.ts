@@ -1,16 +1,11 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
-
-type Data = {
-    name: string;
-};
-
-export default function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<Data>
-) {
-    if (req.method !== "POST") {
-        res.status(400).json({ name: "John Doe" });
-    }
-    res.status(200).json({ name: "John Doe" });
-}
+(async () => {
+    const res = await fetch(
+        "https://www.youtube.com/results?search_query=ambient+music"
+    );
+    const reg = /var ytInitialData = {(.*?)};/;
+    const data = await res.text();
+    const results = reg.exec(data);
+    if (!results) return;
+    const result = JSON.parse(results[0].substring(20).slice(0, -1));
+    console.log(result);
+})();

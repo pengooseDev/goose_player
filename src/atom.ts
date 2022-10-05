@@ -1,10 +1,9 @@
-import {atom} from "recoil";
+import { atom } from "recoil";
+import { v1 } from "uuid";
 
-interface IAxiosAtom {
-    data:string;
-}
+export type IAxiosAtom = object[];
 
 export const axiosAtom = atom<IAxiosAtom>({
-    key:"axiosAtom",
-    default:{data:""}
-})
+    key: `axiosAtom/${v1()}`,
+    default: [],
+});
