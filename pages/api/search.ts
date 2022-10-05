@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
+import axios from "axios";
+import cheerio from "cheerio"
 
 type Data = {
     name: string;
@@ -22,11 +23,13 @@ export default async function handler(
                 inputValue
             )}`;
             try {
-                const HTML = await axios.get(URL);
+                const {data}= await axios.get(URL);
                 console.log("BE:res");
+                console.log(data)
+                const $ = cheerio.load(data);
 
                 //cheerio 써서 파싱 후 return
-                return res.status(200).json({ data: HTML });
+                return res.status(200).json({data:"hi"});
             } catch (err) {
                 console.log("BE:ERR", err);
                 return res.status(400).redirect("/");

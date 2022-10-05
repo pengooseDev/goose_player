@@ -16,7 +16,8 @@ const SearchBar = () => {
         .post(API_URL_SEARCH, { inputValue })
         .then((res) => {
           console.log("res : ", res);
-          setAxiosData((prev) => res);
+
+          //setAxiosData((prev) => res);
         })
         .catch((e) => console.log("ERR : ", e));
     } catch (err) {
