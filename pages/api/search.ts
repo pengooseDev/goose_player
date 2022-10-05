@@ -26,7 +26,7 @@ export default async function handler(
                 console.log("BE:res");
 
                 //cheerio 써서 파싱 후 return
-                return res.status(200).json({ data: "HI" });
+                return res.status(200).json({ data: HTML });
             } catch (err) {
                 console.log("BE:ERR", err);
                 return res.status(400).redirect("/");

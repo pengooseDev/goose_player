@@ -1,16 +1,18 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import axios from "axios";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../src/components/SearchBar";
 //import type { Article, Articles } from "./api/article";
+import Data from "../src/components/Data";
 
 const Home: NextPage = () => {
-    return (
-        <>
-            <>Home</>
-            <SearchBar />
-        </>
-    );
+  return (
+    <>
+      <>Home</>
+      <SearchBar />
+      <Data />
+    </>
+  );
 };
 
 export default Home;
