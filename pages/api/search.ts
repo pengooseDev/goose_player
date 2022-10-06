@@ -46,27 +46,7 @@ export default async function handler(
             }
 
         case "POST":
-            const { inputValue } = req.body;
-            const URL = `https://www.youtube.com/results?search_query=${encodeURI(
-                inputValue
-            )}`;
-            try {
-                const resData = axios.get(URL).then((res) => {
-                    JSON.parse(res.data);
-                    console.log(resData);
-                });
-
-                console.log("BE:res");
-                //console.log(newData);
-                //console.log(typeof newData)
-                //const $ = cheerio.load(data);
-
-                //cheerio 써서 파싱 후 return
-                return res.status(200).json({ data: "hi" });
-            } catch (err) {
-                console.log("BE:ERR", err);
-                return res.status(400).redirect("/");
-            }
+            return res.status(200).json({ data: "hi" });
 
         case "PUT":
             return;

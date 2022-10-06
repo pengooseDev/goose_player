@@ -15,14 +15,21 @@ export interface axiosData {
                 };
             };
         };
+
         title: {
             accessibility: { accessibilityData: { label: string } };
         };
-        thumbnail: { thumbnails: IThumbnails[] };
+
+        thumbnail: {
+            thumbnails: IThumbnails[];
+        };
+
         videoId: string;
     };
 }
 
 interface IThumbnails {
     url: string;
+    height: number;
+    width: number;
 }
