@@ -3,16 +3,16 @@ import { useState } from "react";
 import axios from "axios";
 import SearchBar from "../src/components/SearchBar";
 //import type { Article, Articles } from "./api/article";
-import Data from "../src/components/Data";
+import SearchData from "../src/components/SearchData";
 
 const Home: NextPage = () => {
-  return (
-    <>
-      <>Home</>
-      <SearchBar />
-      <Data />
-    </>
-  );
+    return (
+        <>
+            <>Home</>
+            <SearchBar />
+            <SearchData />
+        </>
+    );
 };
 
 export default Home;

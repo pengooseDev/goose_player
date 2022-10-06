@@ -27,10 +27,10 @@ const dataTrimmer = (axiosData: axiosData) => {
     return { title, id, channelUrl, thumbnail };
 };
 
-const Data = () => {
+const SearchData = () => {
     const [axiosData, setAxiosData] = useRecoilState<axiosData[]>(axiosAtom);
     return (
-        <div>
+        <Wrapper>
             <h1>data</h1>
             <div>
                 {axiosData.map((v, i) => {
@@ -42,13 +42,34 @@ const Data = () => {
                             <h4>{title}</h4>
                             <div>id : {id}</div>
                             <div>channel : {channelUrl}</div>
-                            <div>thumbnail : {thumbnail}</div>
+                            <Thumbnail thumbnail={thumbnail}>
+                                {thumbnail}
+                            </Thumbnail>
                         </div>
                     );
                 })}
             </div>
-        </div>
+        </Wrapper>
     );
 };
 
-export default Data;
+//Ref과정에서 Depth 최소화하기.
+//위에서 return하는 컴포넌트를 또 세분화해도 될 듯.
+//다만, depth를 통해 state변경으로 인한 최적화로 얻는 기댓값은 높지 않음.
+
+export default SearchData;
+
+const Wrapper = styled.div`
+    padding: 10px;
+    background: #111;
+    color: #d8d8d8;
+`;
+
+interface imgUrlProp {
+    thumbnail: string;
+}
+
+const Thumbnail = styled.div<imgUrlProp>`
+    background: url(${(props) => props.thumbnail});
+    background-size: cover;
+`;
