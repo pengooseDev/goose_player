@@ -15,11 +15,9 @@ export interface axiosData {
                 };
             };
         };
-
         title: {
             accessibility: { accessibilityData: { label: string } };
         };
-
         thumbnail: { thumbnails: IThumbnails[] };
         videoId: string;
     };

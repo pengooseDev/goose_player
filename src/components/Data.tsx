@@ -1,7 +1,7 @@
-import { axiosAtom } from "../atom";
+import { axiosAtom, axiosData } from "../atom";
 import { useRecoilState } from "recoil";
+import Card from "./Card";
 import styled from "styled-components";
-import { axiosData } from "../atom";
 
 const dataTrimmer = (axiosData: axiosData) => {
     //ChannelUrl
@@ -32,33 +32,28 @@ const Data = () => {
     return (
         <div>
             <h1>data</h1>
-            <div>
+            <Cards>
                 {axiosData.map((v, i) => {
                     const videoData = dataTrimmer(v);
                     const { title, id, channelUrl, thumbnail } = videoData;
                     if (!title || !id || !channelUrl || !thumbnail) return null;
                     return (
-                        <div key={i}>
-                            <h4>{title}</h4>
-                            <div>id : {id}</div>
-                            <div>channel : {channelUrl}</div>
-                            <Thumbnail thumbnail={thumbnail}>
-                                thumbnail : {thumbnail}
-                            </Thumbnail>
-                        </div>
+                        <Card
+                            key={i}
+                            data={{ title, id, channelUrl, thumbnail }}
+                        />
                     );
                 })}
-            </div>
+            </Cards>
         </div>
     );
 };
 
 export default Data;
 
-interface ThumbnailProps {
-    thumbnail: string;
-}
-
-const Thumbnail = styled.div<ThumbnailProps>`
-    background: url(${(props) => props.thumbnail});
+const Cards = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 500px;
 `;
