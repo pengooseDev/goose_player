@@ -42,7 +42,9 @@ const Data = () => {
                             <h4>{title}</h4>
                             <div>id : {id}</div>
                             <div>channel : {channelUrl}</div>
-                            <div>thumbnail : {thumbnail}</div>
+                            <Thumbnail thumbnail={thumbnail}>
+                                thumbnail : {thumbnail}
+                            </Thumbnail>
                         </div>
                     );
                 })}
@@ -52,3 +54,11 @@ const Data = () => {
 };
 
 export default Data;
+
+interface ThumbnailProps {
+    thumbnail: string;
+}
+
+const Thumbnail = styled.div<ThumbnailProps>`
+    background: url(${(props) => props.thumbnail});
+`;
