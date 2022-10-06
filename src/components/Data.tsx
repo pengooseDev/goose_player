@@ -34,13 +34,14 @@ const dataTrimmer = (axiosData: axiosData) => {
 
 const Data = () => {
     const [axiosData, setAxiosData] = useRecoilState<axiosData[]>(axiosAtom);
+    console.log("-------------------------------------");
+    console.log(axiosData);
     return (
         <div>
             <h1>data</h1>
             <Cards>
                 {axiosData.map((v, i) => {
                     const videoData = dataTrimmer(v);
-                    console.log(videoData);
                     // dataTrimmer에서 거르는 data는 return undefined임.
                     //버리는 데이터 컴포넌트 생성하지 않는 예외처리코드.
                     if (!videoData) return;

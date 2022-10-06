@@ -14,6 +14,7 @@ export default async function handler(
         case "GET":
             //youtube query 양식 : https://www.youtube.com/results?search_query=%ED%8E%AD%EA%B7%84
             const { query } = req.query; //쿼리쿼리야...
+            console.log("BE1 : ", query);
             if (typeof query !== "string") return res.status(400); //typescript exception.
             try {
                 const resData = await axios.get(
@@ -23,7 +24,7 @@ export default async function handler(
                 );
 
                 const HTML = resData.data;
-                const regex = /(var ytInitialData)(.*?);/;
+                const regex = /(var ytInitialData)(.*?)]};/;
                 //원하는 Data Object에 들어있는거 Parsing;
                 const parsedRegexHTML = regex.exec(HTML);
                 if (!parsedRegexHTML) return;
@@ -33,6 +34,7 @@ export default async function handler(
                 const objectData = JSON.parse(
                     parsedHTML.substring(20, parsedHTML.length - 1)
                 );
+
                 const returnData =
                     objectData.contents.twoColumnSearchResultsRenderer
                         .primaryContents.sectionListRenderer?.contents[0]

@@ -15,8 +15,7 @@ const Card = ({ data }: CardProps) => {
         <Wrapper>
             <Thumbnail thumbnail={thumbnail} />
             <Info>
-                <h4>{title}</h4>
-                <div>id : {id}</div>
+                <div>{title}</div>
             </Info>
         </Wrapper>
     );
@@ -29,10 +28,11 @@ interface ThumbnailProps {
 }
 
 const Wrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: space-between;
     background: rgba(0, 0, 0, 0.3);
     padding: 10px;
+    height: 8rem;
 `;
 
 const Thumbnail = styled.div<ThumbnailProps>`
@@ -43,5 +43,11 @@ const Thumbnail = styled.div<ThumbnailProps>`
 `;
 
 const Info = styled.div`
-    background: teal;
+    display: flex;
+    padding: 10px;
+    align-items: flex-start;
+    font-weight: 600;
+    background: white;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+    width: 300px;
 `;
