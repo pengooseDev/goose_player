@@ -15,21 +15,25 @@ export default async function handler(
             //youtube query 양식 : https://www.youtube.com/results?search_query=%ED%8E%AD%EA%B7%84
             const { query } = req.query; //쿼리쿼리야...
             console.log("BE1 : ", query);
+            //@ts-ignore
+            const replacedQuery = query?.split(" ").join("");
+            console.log(replacedQuery);
+
             if (typeof query !== "string") return res.status(400); //typescript exception.
             try {
-                const resData = await axios.get(
-                    `https://www.youtube.com/results?search_query=${encodeURI(
-                        query
-                    )}`
-                );
+                const axiosUrl = `https://www.youtube.com/results?search_query=${encodeURI(
+                    replacedQuery
+                )}`;
+                console.log("axiosUrl", axiosUrl);
+                const resData = await axios.get(axiosUrl);
 
                 const HTML = resData.data;
                 const regex = /(var ytInitialData)(.*?)]};/;
                 //원하는 Data Object에 들어있는거 Parsing;
                 const parsedRegexHTML = regex.exec(HTML);
-                if (!parsedRegexHTML) return;
+                if (!parsedRegexHTML) return res.status(400);
                 const parsedHTML = parsedRegexHTML[0];
-                if (!parsedHTML) return;
+                if (!parsedHTML) return res.status(400);
 
                 const objectData = JSON.parse(
                     parsedHTML.substring(20, parsedHTML.length - 1)
@@ -42,9 +46,9 @@ export default async function handler(
 
                 return res.status(200).json({ result: returnData });
                 //HTML을 string 데이터로 받아온 것 중 필요한 데이터가 있는 부분만 일단 chuncking
-            } catch (e) {
-                console.log(e);
-                return res.status(400).redirect("/");
+            } catch (err) {
+                console.log("getERR : ", err);
+                return res.status(400).send(err);
             }
 
         case "POST":

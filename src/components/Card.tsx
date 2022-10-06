@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { playerAtom } from "../atom";
+import { useRecoilState } from "recoil";
 
 interface CardProps {
     data: {
@@ -11,6 +13,11 @@ interface CardProps {
 
 const Card = ({ data }: CardProps) => {
     const { title, id, channelUrl, thumbnail } = data;
+
+    const cardClickHandler = (id: string) => {
+        console.log(id);
+    };
+
     return (
         <Wrapper>
             <Thumbnail thumbnail={thumbnail} />

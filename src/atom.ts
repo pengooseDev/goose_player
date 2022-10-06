@@ -33,3 +33,9 @@ interface IThumbnails {
     height: number;
     width: number;
 }
+
+/* player Atom */
+export const playerAtom = atom({
+    key: "playerAtom",
+    default: "",
+});
