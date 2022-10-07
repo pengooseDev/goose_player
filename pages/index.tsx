@@ -2,12 +2,14 @@ import type { NextPage } from "next";
 import SearchBar from "../src/components/SearchBar";
 //import type { Article, Articles } from "./api/article";
 import Data from "../src/components/Data";
+import Player from "../src/components/Player";
 
 const Home: NextPage = () => {
     return (
         <>
             <>Home</>
             <SearchBar />
+            <Player />
             <Data />
         </>
     );

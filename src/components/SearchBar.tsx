@@ -1,21 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { axiosAtom } from "../atom";
-import { API_URL_SEARCH } from "../../pages/api/middlewares/urls";
+import { axiosAtom, loadingAtom } from "../atom";
+import { API_URL_SEARCH } from "../../pages/api/controller/urlTrimmer";
 
 const SearchBar = () => {
     const [inputValue, setInputValue] = useState("");
     const [axiosData, setAxiosData] = useRecoilState(axiosAtom);
+    const [isLoading, setLoading] = useRecoilState(loadingAtom);
 
     /* onSubmitHandler */
     const searchHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading((prev) => !prev);
         try {
-            /*원하는 데이터를 편하게 사용하기 위해선, 
-            parsing의 과정을 거쳐야 함.
-            이 과정에서 regex를 이용하면 정확하고 효율적으로 데이터를 손질할 수 있음.
-            */
             const res = await axios.get(API_URL_SEARCH, {
                 params: { query: inputValue },
             });
@@ -23,6 +21,7 @@ const SearchBar = () => {
                 data: { result },
             } = res;
             setAxiosData((prev) => result);
+            setLoading((prev) => !prev);
         } catch (err) {
             console.log("ERR!", err);
         }

@@ -1,4 +1,4 @@
-import { axiosAtom, axiosData } from "../atom";
+import { axiosAtom, axiosData, loadingAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import Card from "./Card";
 import styled from "styled-components";
@@ -34,36 +34,61 @@ const dataTrimmer = (axiosData: axiosData) => {
 
 const Data = () => {
     const [axiosData, setAxiosData] = useRecoilState<axiosData[]>(axiosAtom);
-    console.log("-------------------------------------");
-    console.log(axiosData);
+    const [isLoading, setLoading] = useRecoilState<boolean>(loadingAtom);
     return (
-        <div>
-            <h1>data</h1>
-            <Cards>
-                {axiosData.map((v, i) => {
-                    const videoData = dataTrimmer(v);
-                    // dataTrimmer에서 거르는 data는 return undefined임.
-                    //버리는 데이터 컴포넌트 생성하지 않는 예외처리코드.
-                    if (!videoData) return;
-                    const { title, id, channelUrl, thumbnail } = videoData;
-                    if (!title || !id || !channelUrl || !thumbnail) return null;
-                    return (
-                        <Card
-                            key={i}
-                            data={{ title, id, channelUrl, thumbnail }}
-                        />
-                    );
-                })}
-            </Cards>
-        </div>
+        <Wrapper>
+            <Title>data</Title>
+            {isLoading ? (
+                "Loading"
+            ) : (
+                <Cards>
+                    {axiosData.map((v, i) => {
+                        const videoData = dataTrimmer(v);
+                        // dataTrimmer에서 거르는 data는 return undefined임.
+                        //버리는 데이터 컴포넌트 생성하지 않는 예외처리코드.
+                        if (!videoData) return;
+                        const { title, id, channelUrl, thumbnail } = videoData;
+                        if (!title || !id || !channelUrl || !thumbnail)
+                            return null;
+                        return (
+                            <Card
+                                key={i}
+                                data={{ title, id, channelUrl, thumbnail }}
+                            />
+                        );
+                    })}
+                </Cards>
+            )}
+        </Wrapper>
     );
 };
 
 export default Data;
 
+const Title = styled.div`
+    background: white;
+    font-size: 30px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 13.5px;
+`;
+
+const Wrapper = styled.div`
+    background: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    width: 570px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+`;
+
 const Cards = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
-    width: 500px;
+    height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
 `;

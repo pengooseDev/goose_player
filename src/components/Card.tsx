@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { playerAtom } from "../atom";
+import { queueAtom } from "../atom";
 import { useRecoilState } from "recoil";
+import { queueUrlTrimmer } from "../../pages/api/controller/urlTrimmer";
 
 interface CardProps {
     data: {
@@ -13,13 +14,17 @@ interface CardProps {
 
 const Card = ({ data }: CardProps) => {
     const { title, id, channelUrl, thumbnail } = data;
+    const [queue, setQueue] = useRecoilState(queueAtom);
 
-    const cardClickHandler = (id: string) => {
-        console.log(id);
+    const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+        const { id: targetId } = e.currentTarget;
+        setQueue((prev) => {
+            return [...prev, queueUrlTrimmer(targetId)];
+        });
     };
 
     return (
-        <Wrapper>
+        <Wrapper id={id} onClick={cardClickHandler}>
             <Thumbnail thumbnail={thumbnail} />
             <Info>
                 <div>{title}</div>
@@ -37,9 +42,15 @@ interface ThumbnailProps {
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     padding: 10px;
     height: 8rem;
+    border-radius: 0px;
+    transition: 0.1s ease-in-out;
+    :hover {
+        background: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+    }
 `;
 
 const Thumbnail = styled.div<ThumbnailProps>`

@@ -1,6 +1,7 @@
 import { atom } from "recoil";
 import { v1 } from "uuid";
 
+/* Axios Atom */
 export const axiosAtom = atom<axiosData[]>({
     key: `axiosAtom/${v1()}`,
     default: [],
@@ -15,15 +16,12 @@ export interface axiosData {
                 };
             };
         };
-
         title: {
             accessibility: { accessibilityData: { label: string } };
         };
-
         thumbnail: {
             thumbnails: IThumbnails[];
         };
-
         videoId: string;
     };
 }
@@ -34,8 +32,16 @@ interface IThumbnails {
     width: number;
 }
 
-/* player Atom */
-export const playerAtom = atom({
-    key: `playerAtom/${v1()}`,
-    default: "",
+/* loadingAtom */
+export const loadingAtom = atom<boolean>({
+    key: "loadingAtom",
+    default: false,
 });
+
+/* player queueAtom */
+export const queueAtom = atom<queueType>({
+    key: `queueAtom/${v1()}`,
+    default: [],
+});
+
+type queueType = string[];
