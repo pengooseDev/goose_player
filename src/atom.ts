@@ -36,6 +36,6 @@ interface IThumbnails {
 
 /* player Atom */
 export const playerAtom = atom({
-    key: "playerAtom",
+    key: `playerAtom/${v1()}`,
     default: "",
 });

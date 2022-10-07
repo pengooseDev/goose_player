@@ -25,11 +25,14 @@ export default async function handler(
                     replacedQuery
                 )}`;
                 console.log("axiosUrl", axiosUrl);
+
                 const resData = await axios.get(axiosUrl);
 
+                console.log("1");
+
                 const HTML = resData.data;
-                const regex = /(var ytInitialData)(.*?)]};/;
-                //원하는 Data Object에 들어있는거 Parsing;
+                const regex = /(var ytInitialData)(.*?)};/;
+                //"펭귄 nier" 이런식으로 검색하면 regex에 만족하는게 없음 지금.
                 const parsedRegexHTML = regex.exec(HTML);
                 if (!parsedRegexHTML) return res.status(400);
                 const parsedHTML = parsedRegexHTML[0];
