@@ -81,7 +81,7 @@ const Wrapper = styled.div`
     width: 570px;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 3px 55px rgba(0, 0, 0, 0.5);
 `;
 
 const Cards = styled.div`

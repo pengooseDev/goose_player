@@ -2,7 +2,6 @@ import ReactPlayer from "react-player";
 import { queueAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 const Player = () => {
@@ -46,11 +45,17 @@ const Player = () => {
 export default Player;
 
 const Wrapper = styled.div`
-    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    transform: skew(20deg, 0deg) rotate(20deg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
 `;
 
 const Controller = styled.div`
     background: teal;
+    width: 50%;
 `;
 
 const PlayerWrapper = styled.div`

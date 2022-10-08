@@ -3,6 +3,7 @@ import SearchBar from "../src/components/SearchBar";
 //import type { Article, Articles } from "./api/article";
 import Data from "../src/components/Data";
 import Player from "../src/components/Player";
+import styled from "styled-components";
 
 const Home: NextPage = () => {
     return (
@@ -10,12 +11,15 @@ const Home: NextPage = () => {
             <>Home</>
             <SearchBar />
             <Player />
+            <DataWrapper></DataWrapper>
             <Data />
         </>
     );
 };
 
 export default Home;
+
+const DataWrapper = styled.div``;
 
 /*
 

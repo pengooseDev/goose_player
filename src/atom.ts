@@ -34,7 +34,7 @@ interface IThumbnails {
 
 /* loadingAtom */
 export const loadingAtom = atom<boolean>({
-    key: "loadingAtom",
+    key: `loadingAtom/${v1()}`,
     default: false,
 });
 
