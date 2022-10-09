@@ -48,12 +48,12 @@ type queueType = string[];
 
 /* searchToggleAtom */
 export const searchToggleAtom = atom({
-    key: "searchToggleAtom",
+    key: `searchToggleAtom/${v1()}`,
     default: false,
 });
 
 /* Queue Index */
 export const queueIndexAtom = atom({
-    key: "queueIndexAtom",
+    key: `queueIndexAtom/${v1()}`,
     default: 0,
 });

@@ -15,22 +15,28 @@ const Home: NextPage = () => {
             <Nav title={"Home"} />
             <RotateComponent>
                 <Player />
+
+                {searchToggle ? <Search /> : null}
             </RotateComponent>
-            {searchToggle ? <Search /> : null}
         </Wrapper>
     );
 };
 
 export default Home;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+    position: relative;
+    height: 100vh;
+    background: #111;
+`;
 
 const RotateComponent = styled.div`
-    background: bisque;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: relative;
+    background: #111;
 `;
 
 /*

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
     padding: 10px;
-    background: #111;
+    background: black;
     color: whitesmoke;
     font-weight: 600;
     font-size: 20px;
