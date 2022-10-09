@@ -60,7 +60,8 @@ const Search = () => {
         setSearchToggle((prev) => false);
     };
     return (
-        <Overlay onClick={overlayToggleHandler}>
+        <>
+            <Overlay onClick={overlayToggleHandler}></Overlay>
             <Container>
                 <Wrapper
                 //variants={toggleVariants}
@@ -102,7 +103,7 @@ const Search = () => {
                     )}
                 </Wrapper>
             </Container>
-        </Overlay>
+        </>
     );
 };
 
@@ -110,12 +111,11 @@ export default Search;
 
 const Overlay = styled.div`
     position: fixed;
+    z-index: 1;
     top: 0px;
     left: 0px;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
 `;
 
 const Container = styled.div`
