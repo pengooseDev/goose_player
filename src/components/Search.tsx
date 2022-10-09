@@ -2,6 +2,7 @@ import { axiosAtom, axiosData, loadingAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import Card from "./Card";
 import styled from "styled-components";
+import SearchBar from "../../src/components/SearchBar";
 
 const dataTrimmer = (axiosData: axiosData) => {
     /* ChannelUrl */
@@ -32,12 +33,13 @@ const dataTrimmer = (axiosData: axiosData) => {
     return { title, id, channelUrl, thumbnail };
 };
 
-const Data = () => {
+const Search = () => {
     const [axiosData, setAxiosData] = useRecoilState<axiosData[]>(axiosAtom);
     const [isLoading, setLoading] = useRecoilState<boolean>(loadingAtom);
     return (
         <Wrapper>
             <Title>data</Title>
+            <SearchBar />
             {isLoading ? (
                 "Loading"
             ) : (
@@ -63,7 +65,7 @@ const Data = () => {
     );
 };
 
-export default Data;
+export default Search;
 
 const Title = styled.div`
     background: white;
@@ -75,7 +77,9 @@ const Title = styled.div`
 `;
 
 const Wrapper = styled.div`
-    background: whitesmoke;
+    position: absolute;
+    background: rgba(111, 111, 111, 0.1);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     width: 570px;

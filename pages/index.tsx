@@ -1,25 +1,34 @@
 import type { NextPage } from "next";
-import SearchBar from "../src/components/SearchBar";
 //import type { Article, Articles } from "./api/article";
-import Data from "../src/components/Data";
 import Player from "../src/components/Player";
-import styled from "styled-components";
+import Nav from "../src/components/Nav";
+import Search from "../src/components/Search";
+import IconSearch from "../src/components/IconSearch";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+    const [searchToggle, setSearchToggle] = useState(false);
+
+    const searchToggleHandler = () => {
+        setSearchToggle((prev) => !prev);
+    };
+
     return (
         <>
-            <>Home</>
-            <SearchBar />
+            <Nav title={"Home"} />
             <Player />
-            <DataWrapper></DataWrapper>
-            <Data />
+            <div onClick={searchToggleHandler}>
+                <IconSearch
+                    onClick={searchToggleHandler}
+                    toggleState={searchToggle}
+                />
+            </div>
+            {searchToggle ? <Search /> : null}
         </>
     );
 };
 
 export default Home;
-
-const DataWrapper = styled.div``;
 
 /*
 
