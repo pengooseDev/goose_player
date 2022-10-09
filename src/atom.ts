@@ -51,3 +51,9 @@ export const searchToggleAtom = atom({
     key: "searchToggleAtom",
     default: false,
 });
+
+/* Queue Index */
+export const queueIndexAtom = atom({
+    key: "queueIndexAtom",
+    default: 0,
+});

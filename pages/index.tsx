@@ -1,28 +1,37 @@
 import type { NextPage } from "next";
-//import type { Article, Articles } from "./api/article";
 import Player from "../src/components/Player";
 import Nav from "../src/components/Nav";
 import Search from "../src/components/search/Search";
-import Controller from "../src/components/Controller";
-import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { searchToggleAtom } from "../src/atom";
+import styled from "styled-components";
 
 const Home: NextPage = () => {
     const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
     console.log(searchToggle);
 
     return (
-        <>
+        <Wrapper>
             <Nav title={"Home"} />
-            <Player />
-            <Controller />
+            <RotateComponent>
+                <Player />
+            </RotateComponent>
             {searchToggle ? <Search /> : null}
-        </>
+        </Wrapper>
     );
 };
 
 export default Home;
+
+const Wrapper = styled.div``;
+
+const RotateComponent = styled.div`
+    background: bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+`;
 
 /*
 

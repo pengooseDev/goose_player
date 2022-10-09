@@ -50,41 +50,49 @@ const Search = () => {
     const [axiosData, setAxiosData] = useRecoilState<axiosData[]>(axiosAtom);
     const [isLoading, setLoading] = useRecoilState<boolean>(loadingAtom);
     return (
-        <Wrapper
-        //variants={toggleVariants}
-        //initial="from"
-        //animate="to"
-        //exit="exit"
-        >
-            <Title>data</Title>
-            <SearchBar />
-            {isLoading ? (
-                "Loading"
-            ) : (
-                <Cards>
-                    {axiosData.map((v, i) => {
-                        const videoData = dataTrimmer(v);
-                        // dataTrimmer에서 거르는 data는 return undefined임.
-                        //버리는 데이터 컴포넌트 생성하지 않는 예외처리코드.
-                        if (!videoData) return;
-                        const { title, id, channelUrl, thumbnail } = videoData;
-                        if (!title || !id || !channelUrl || !thumbnail)
-                            return null;
-                        return (
-                            <Card
-                                key={i}
-                                data={{ title, id, channelUrl, thumbnail }}
-                            />
-                        );
-                    })}
-                </Cards>
-            )}
-        </Wrapper>
+        <Container>
+            <Wrapper
+            //variants={toggleVariants}
+            //initial="from"
+            //animate="to"
+            //exit="exit"
+            >
+                <Title>data</Title>
+                <SearchBar />
+                {isLoading ? (
+                    "Loading"
+                ) : (
+                    <Cards>
+                        {axiosData.map((v, i) => {
+                            const videoData = dataTrimmer(v);
+                            // dataTrimmer에서 거르는 data는 return undefined임.
+                            //버리는 데이터 컴포넌트 생성하지 않는 예외처리코드.
+                            if (!videoData) return;
+                            const { title, id, channelUrl, thumbnail } =
+                                videoData;
+                            if (!title || !id || !channelUrl || !thumbnail)
+                                return null;
+                            return (
+                                <Card
+                                    key={i}
+                                    data={{ title, id, channelUrl, thumbnail }}
+                                />
+                            );
+                        })}
+                    </Cards>
+                )}
+            </Wrapper>
+        </Container>
     );
 };
 
 export default Search;
 
+const Container = styled.div`
+    background: tomato;
+    display: flex;
+    justify-content: center;
+`;
 const Wrapper = styled(motion.div)`
     background: rgba(111, 111, 111, 0.1);
     backdrop-filter: blur(10px);

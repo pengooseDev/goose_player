@@ -1,12 +1,13 @@
 import ReactPlayer from "react-player";
-import { queueAtom } from "../atom";
+import { queueAtom, queueIndexAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
+import Controller from "../../src/components/Controller";
 
 const Player = () => {
     const [playerQueue, setPlayerQueue] = useRecoilState<string[]>(queueAtom);
-    const [queueIndex, setQueueIndex] = useState<number>(0);
+    const [queueIndex, setQueueIndex] = useRecoilState<number>(queueIndexAtom);
     const playerRef = useRef(null);
 
     const [hasWindow, setHasWindow] = useState(false);
@@ -48,15 +49,8 @@ const Player = () => {
                     />
                 </PlayerWrapper>
             )}
-            <PlayerController>
-                <button
-                    onClick={() => {
-                        next();
-                    }}
-                >
-                    next
-                </button>
-            </PlayerController>
+
+            <Controller />
         </Wrapper>
     );
 };
@@ -68,16 +62,9 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: tomato;
+    background: rgba(0, 0, 0, 0.2);
 `;
-
-const PlayerController = styled.div`
-    background: teal;
-    width: 50%;
-`;
-
 const PlayerWrapper = styled.div`
-    background: teal;
     transform: skew(20deg, 0deg) rotate(20deg);
     position: relative;
 `;
