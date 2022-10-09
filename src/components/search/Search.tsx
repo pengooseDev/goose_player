@@ -1,8 +1,9 @@
-import { axiosAtom, axiosData, loadingAtom } from "../atom";
+import { axiosAtom, axiosData, loadingAtom } from "../../atom";
 import { useRecoilState } from "recoil";
-import Card from "./Card";
+import Card from "../Card";
 import styled from "styled-components";
-import SearchBar from "../../src/components/SearchBar";
+import SearchBar from "../../components/search/SearchBar";
+import { motion } from "framer-motion";
 
 const dataTrimmer = (axiosData: axiosData) => {
     /* ChannelUrl */
@@ -33,11 +34,28 @@ const dataTrimmer = (axiosData: axiosData) => {
     return { title, id, channelUrl, thumbnail };
 };
 
+const toggleVariants = {
+    from: {
+        opacity: 0,
+    },
+    to: {
+        opacity: 1,
+    },
+    exit: {
+        opacity: 0,
+    },
+};
+
 const Search = () => {
     const [axiosData, setAxiosData] = useRecoilState<axiosData[]>(axiosAtom);
     const [isLoading, setLoading] = useRecoilState<boolean>(loadingAtom);
     return (
-        <Wrapper>
+        <Wrapper
+        //variants={toggleVariants}
+        //initial="from"
+        //animate="to"
+        //exit="exit"
+        >
             <Title>data</Title>
             <SearchBar />
             {isLoading ? (
@@ -67,8 +85,7 @@ const Search = () => {
 
 export default Search;
 
-const Wrapper = styled.div`
-    position: absolute;
+const Wrapper = styled(motion.div)`
     background: rgba(111, 111, 111, 0.1);
     backdrop-filter: blur(10px);
     display: flex;

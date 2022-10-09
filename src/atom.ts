@@ -45,3 +45,9 @@ export const queueAtom = atom<queueType>({
 });
 
 type queueType = string[];
+
+/* searchToggleAtom */
+export const searchToggleAtom = atom({
+    key: "searchToggleAtom",
+    default: false,
+});

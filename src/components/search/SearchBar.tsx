@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { axiosAtom, loadingAtom } from "../atom";
-import { API_URL_SEARCH } from "../../pages/api/controller/urlTrimmer";
+import { axiosAtom, loadingAtom } from "../../atom";
+import { API_URL_SEARCH } from "../../../pages/api/controller/urlTrimmer";
 
 const SearchBar = () => {
     const [inputValue, setInputValue] = useState("");

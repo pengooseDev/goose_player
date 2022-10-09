@@ -1,8 +1,15 @@
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { searchToggleAtom } from "../../atom";
 
-const IconSearch = (props: { onClick: () => void; toggleState: boolean }) => {
+const IconSearch = () => {
+    const [toggleState, setToggleState] = useRecoilState(searchToggleAtom);
+    const toggleHandler = () => {
+        setToggleState((prev) => !prev);
+    };
+
     return (
-        <Wrapper toggleState={props.toggleState}>
+        <Wrapper toggleState={toggleState} onClick={toggleHandler}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

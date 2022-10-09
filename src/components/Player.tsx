@@ -19,15 +19,15 @@ const Player = () => {
     /* playAlgorithm */
     const playAlgorithm = () => {
         console.log("Ended!");
-        //재생 중 index가 유동적으로 바뀌는 것 인지. id를
         next();
     };
 
     const next = () => {
         //id로 한 번 확인하고 삭제된 노래일 경우 인덱스로 확인.
         console.log("ref:", playerRef);
-        console.log("!!!!!!!!!!!!queueIndex", queueIndex);
-        console.log("len : ", playerQueue.length - 1);
+
+        if (queueIndex >= playerQueue.length - 1) {
+            return setQueueIndex((prev) => 0);
         }
 
         return setQueueIndex((prev) => prev + 1);
@@ -48,7 +48,7 @@ const Player = () => {
                     />
                 </PlayerWrapper>
             )}
-            <Controller>
+            <PlayerController>
                 <button
                     onClick={() => {
                         next();
@@ -56,7 +56,7 @@ const Player = () => {
                 >
                     next
                 </button>
-            </Controller>
+            </PlayerController>
         </Wrapper>
     );
 };
@@ -71,7 +71,7 @@ const Wrapper = styled.div`
     background: tomato;
 `;
 
-const Controller = styled.div`
+const PlayerController = styled.div`
     background: teal;
     width: 50%;
 `;

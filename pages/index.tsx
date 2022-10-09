@@ -2,27 +2,21 @@ import type { NextPage } from "next";
 //import type { Article, Articles } from "./api/article";
 import Player from "../src/components/Player";
 import Nav from "../src/components/Nav";
-import Search from "../src/components/Search";
-import IconSearch from "../src/components/IconSearch";
+import Search from "../src/components/search/Search";
+import Controller from "../src/components/Controller";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { searchToggleAtom } from "../src/atom";
 
 const Home: NextPage = () => {
-    const [searchToggle, setSearchToggle] = useState(false);
-
-    const searchToggleHandler = () => {
-        setSearchToggle((prev) => !prev);
-    };
+    const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
+    console.log(searchToggle);
 
     return (
         <>
             <Nav title={"Home"} />
             <Player />
-            <div onClick={searchToggleHandler}>
-                <IconSearch
-                    onClick={searchToggleHandler}
-                    toggleState={searchToggle}
-                />
-            </div>
+            <Controller />
             {searchToggle ? <Search /> : null}
         </>
     );
