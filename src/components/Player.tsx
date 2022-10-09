@@ -2,12 +2,12 @@ import ReactPlayer from "react-player";
 import { queueAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Player = () => {
-    const [playerQueue, setPlayerQueue] = useRecoilState(queueAtom);
+    const [playerQueue, setPlayerQueue] = useRecoilState<string[]>(queueAtom);
     const [queueIndex, setQueueIndex] = useState<number>(0);
-    console.log("queue: ", playerQueue);
+    const playerRef = useRef(null);
 
     const [hasWindow, setHasWindow] = useState(false);
     useEffect(() => {
@@ -16,23 +16,42 @@ const Player = () => {
         }
     }, []);
 
+    /* playAlgorithm */
+    const playAlgorithm = () => {
+        console.log("Ended!");
+        //재생 중 index가 유동적으로 바뀌는 것 인지. id를
+        next();
+    };
+
+    const next = () => {
+        //id로 한 번 확인하고 삭제된 노래일 경우 인덱스로 확인.
+        console.log("ref:", playerRef);
+        console.log("!!!!!!!!!!!!queueIndex", queueIndex);
+        console.log("len : ", playerQueue.length - 1);
+        }
+
+        return setQueueIndex((prev) => prev + 1);
+    };
+
     return (
         <Wrapper>
             {hasWindow && playerQueue[queueIndex] && (
                 <PlayerWrapper>
                     <PlayerOverlay />
                     <ReactPlayer
+                        ref={playerRef}
                         url={playerQueue[queueIndex]}
-                        mute={false}
+                        mute="false"
                         playing={true}
                         controls={false}
+                        onEnded={playAlgorithm}
                     />
                 </PlayerWrapper>
             )}
             <Controller>
                 <button
                     onClick={() => {
-                        console.log(1);
+                        next();
                     }}
                 >
                     next
@@ -46,11 +65,10 @@ export default Player;
 
 const Wrapper = styled.div`
     display: flex;
-    transform: skew(20deg, 0deg) rotate(20deg);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.3);
+    background: tomato;
 `;
 
 const Controller = styled.div`
@@ -59,6 +77,8 @@ const Controller = styled.div`
 `;
 
 const PlayerWrapper = styled.div`
+    background: teal;
+    transform: skew(20deg, 0deg) rotate(20deg);
     position: relative;
 `;
 
