@@ -67,15 +67,6 @@ const Search = () => {
 
 export default Search;
 
-const Title = styled.div`
-    background: white;
-    font-size: 30px;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-bottom: 13.5px;
-`;
-
 const Wrapper = styled.div`
     position: absolute;
     background: rgba(111, 111, 111, 0.1);
@@ -86,6 +77,15 @@ const Wrapper = styled.div`
     padding: 10px;
     border-radius: 5px;
     box-shadow: 1px 3px 55px rgba(0, 0, 0, 0.5);
+`;
+
+const Title = styled.div`
+    background: white;
+    font-size: 30px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 13.5px;
 `;
 
 const Cards = styled.div`
