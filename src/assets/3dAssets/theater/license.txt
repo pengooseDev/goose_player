@@ -1,0 +1,11 @@
+Model Information:
+* title:	cinema/movie theater_[interior]
+* source:	https://sketchfab.com/3d-models/cinemamovie-theater-interior-dcaf6cdebcad4f03879c24186da257ee
+* author:	yuuuusukeeee (https://sketchfab.com/yuuuusukeeee)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "cinema/movie theater_[interior]" (https://sketchfab.com/3d-models/cinemamovie-theater-interior-dcaf6cdebcad4f03879c24186da257ee) by yuuuusukeeee (https://sketchfab.com/yuuuusukeeee) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
