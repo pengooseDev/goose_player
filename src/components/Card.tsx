@@ -80,12 +80,13 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 3px;
     padding: 10px;
     height: 8rem;
-    border-radius: 0px;
     transition: 0.1s ease-in-out;
     :hover {
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.8);
         cursor: pointer;
     }
 `;

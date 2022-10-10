@@ -171,7 +171,8 @@ const Wrapper = styled(motion.div)`
 `;
 
 const Title = styled.div`
-    background: white;
+    background: #111;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -180,6 +181,7 @@ const Title = styled.div`
     padding: 5px 10px;
     border-radius: 5px;
     margin-bottom: 13.5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
 `;
 
 const Cards = styled.div`

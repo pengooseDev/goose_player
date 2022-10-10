@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { queueAtom, queueIndexAtom } from "../atom";
+import { queueAtom, queueIndexAtom, isPlayingAtom, loopAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
@@ -10,7 +10,8 @@ import Image from "next/image";
 const Player = () => {
     const [playerQueue, setPlayerQueue] = useRecoilState<string[]>(queueAtom);
     const [queueIndex, setQueueIndex] = useRecoilState<number>(queueIndexAtom);
-
+    const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
+    const [isLoop, setIsLoop] = useRecoilState(loopAtom);
     const playerRef = useRef(null);
 
     const [hasWindow, setHasWindow] = useState(false);
@@ -28,26 +29,29 @@ const Player = () => {
 
     const next = () => {
         //id로 한 번 확인하고 삭제된 노래일 경우 인덱스로 확인.
-
         if (queueIndex >= playerQueue.length - 1) {
             console.log("loop");
             return setQueueIndex((prev) => 0);
         }
-
         return setQueueIndex((prev) => prev + 1);
+    };
+
+    const playingToggle = () => {
+        setIsPlaying((prev) => !prev);
     };
 
     return (
         <Wrapper>
             {hasWindow && playerQueue[queueIndex] ? (
                 <PlayerWrapper>
-                    <PlayerOverlay />
+                    <PlayerOverlay onClick={playingToggle} />
                     <ReactPlayer
                         ref={playerRef}
                         url={playerQueue[queueIndex]}
                         mute="false"
-                        playing={true}
+                        playing={isPlaying}
                         controls={false}
+                        loop={isLoop}
                         onEnded={playAlgorithm}
                     />
                 </PlayerWrapper>
@@ -76,7 +80,7 @@ const Monitor = styled.div`
 
 const Wrapper = styled.div`
     display: flex;
-    margin-top: 150px;
+    margin-top: 200px;
     flex-direction: column;
     justify-content: center;
     align-items: center;

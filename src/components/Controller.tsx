@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import NextBtn from "./Next";
+import Loop from "./Loop";
 
 import IconSearch from "./search/IconSearch";
 
@@ -8,6 +9,7 @@ const Controller = () => {
         <Wrapper>
             <NextBtn />
             <IconSearch />
+            <Loop />
         </Wrapper>
     );
 };

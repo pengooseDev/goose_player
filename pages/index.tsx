@@ -8,7 +8,6 @@ import styled from "styled-components";
 
 const Home: NextPage = () => {
     const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
-    console.log(searchToggle);
 
     return (
         <Wrapper>

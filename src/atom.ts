@@ -61,3 +61,15 @@ export const queueIndexAtom = atom({
     key: `queueIndexAtom/${v1()}`,
     default: 0,
 });
+
+/* isPlayingAtom */
+export const isPlayingAtom = atom({
+    key: `isPlayingAtom/${v1()}`,
+    default: true,
+});
+
+/* loopAtom */
+export const loopAtom = atom<boolean>({
+    key: `loopAtom/${v1()}`,
+    default: false,
+});
