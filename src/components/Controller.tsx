@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import NextBtn from "./Next";
 import Loop from "./Loop";
+import Pause from "./Pause";
 
 import IconSearch from "./search/IconSearch";
 
@@ -8,6 +9,7 @@ const Controller = () => {
     return (
         <Wrapper>
             <NextBtn />
+            <Pause />
             <IconSearch />
             <Loop />
         </Wrapper>
