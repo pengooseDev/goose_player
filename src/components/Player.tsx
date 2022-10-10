@@ -28,13 +28,6 @@ const Player = () => {
 
     const next = () => {
         //id로 한 번 확인하고 삭제된 노래일 경우 인덱스로 확인.
-        console.log("ref:", playerRef);
-        console.log(
-            "queueIndex : ",
-            queueIndex,
-            "queueLen : ",
-            playerQueue.length - 1
-        );
 
         if (queueIndex >= playerQueue.length - 1) {
             console.log("loop");

@@ -9,11 +9,12 @@ interface CardProps {
         id: string;
         channelUrl: string;
         thumbnail: string;
+        duration: string;
     };
 }
 
 const Card = ({ data }: CardProps) => {
-    const { title, id, channelUrl, thumbnail } = data;
+    const { title, id, channelUrl, thumbnail, duration } = data;
     const [queue, setQueue] = useRecoilState(queueAtom);
 
     const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -28,6 +29,7 @@ const Card = ({ data }: CardProps) => {
             <Thumbnail thumbnail={thumbnail} />
             <Info>
                 <div>{title}</div>
+                <div>{duration}</div>
             </Info>
         </Wrapper>
     );
