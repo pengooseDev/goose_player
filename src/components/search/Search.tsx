@@ -56,7 +56,7 @@ const dataTrimmer = (axiosData: axiosData) => {
         thumbnail,
         duration: returnDuration,
     };
-};
+}; //
 
 const toggleVariants = {
     from: {
