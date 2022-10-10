@@ -24,7 +24,6 @@ const Card = ({ data }: CardProps) => {
             return [...prev, queueUrlTrimmer(targetId)];
         });
     };
-    console.log("owner : ", owner);
 
     return (
         <Wrapper id={id} onClick={cardClickHandler}>
