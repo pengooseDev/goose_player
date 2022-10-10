@@ -45,8 +45,8 @@ const Wrapper = styled.div<{ isLoop: boolean }>`
     border-radius: 5px;
     transition: 0.2s ease-in-out;
     :hover {
-        background: rgba(200, 200, 200, 1);
-        color: #111;
+        //background: rgba(200, 200, 200, 1);
+        //color: #111;
         cursor: pointer;
     }
 `;

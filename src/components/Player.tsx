@@ -6,7 +6,7 @@ import {
     isPlayingAtom,
     loopAtom,
 } from "../atom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
 import Controller from "../../src/components/Controller";
@@ -17,8 +17,8 @@ const Player = () => {
     const [playerQueue, setPlayerQueue] = useRecoilState<string[]>(queueAtom);
     const [queueIndex, setQueueIndex] = useRecoilState<number>(queueIndexAtom);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
-    const [isLoop, setIsLoop] = useRecoilState(loopAtom);
-    const [volume, setVolume] = useRecoilState(volumeAtom);
+    const isLoop = useRecoilValue(loopAtom);
+    const volume = useRecoilValue(volumeAtom);
     const playerRef = useRef(null);
 
     const [hasWindow, setHasWindow] = useState(false);
@@ -30,8 +30,12 @@ const Player = () => {
 
     /* onEndedHandler */
     const onEndedHandler = () => {
-        console.log("Ended!");
-        next();
+        if (isLoop) {
+            console.log("loop : ", isLoop);
+            console.log("isPlaying : ", isPlaying, "=> true");
+            return setIsPlaying((prev) => true);
+        }
+        return next();
     };
 
     const next = () => {
