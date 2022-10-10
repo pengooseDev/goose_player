@@ -51,19 +51,21 @@ const Form = styled.form`
 
 const Input = styled.input.attrs({ type: "text" })`
     border: none;
-    background: whitesmoke;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
     width: 100%;
     padding: 7px 10px;
     border-radius: 5px;
     font-weight: 600;
     font-size: 16px;
+    transition: ease-in-out 0.1s;
+    background: rgba(222, 222, 222, 0.7);
 
     :hover {
         cursor: pointer;
     }
 
     :focus {
+        background: rgba(222, 222, 222, 1);
         outline: none;
     }
 `;

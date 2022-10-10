@@ -35,6 +35,7 @@ const Player = () => {
             console.log("isPlaying : ", isPlaying, "=> true");
             return setIsPlaying((prev) => true);
         }
+        console.log("!!!", isLoop);
         return next();
     };
 
