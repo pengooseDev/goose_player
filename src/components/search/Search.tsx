@@ -34,27 +34,24 @@ const dataTrimmer = (axiosData: axiosData) => {
     //axios가 받아오는 데이터 형식이 local, vercel에 따라 다름. (title에 정규표현식 안먹음!)
     /* Local용 */
     const titleLocalRegex = /^.*? (?=게시자: )/g; //텍스트의 처음부터 "게시자"의 전방탐색까지.
-    const localTitle = titleLocalRegex.exec(titleData);
+    const title = titleLocalRegex.exec(titleData);
 
-    /* deploy용 */
-
-    const titleDeployRegex = /.+(?=( [0-9]* .*? ago))/g;
-    const durationRegex = /(?<=(ago) )[0-9]* minutes/g;
-
-    const deployTitle = titleDeployRegex.exec(titleData);
-    const deployDuration = durationRegex.exec(titleData);
-    if (!deployDuration) return;
-    const returnDuration = deployDuration[0];
-
-    console.log(deployTitle);
     /* ID */
     const id = axiosData.videoRenderer?.videoId;
+
+    const owner = axiosData.videoRenderer?.ownerText.runs[0].text;
+
+    const duration =
+        axiosData.videoRenderer?.lengthText.accessibility.accessibilityData
+            .label;
+
     return {
-        title: deployTitle,
+        title,
         id,
         channelUrl,
         thumbnail,
-        duration: returnDuration,
+        duration,
+        owner,
     };
 }; //
 
@@ -112,13 +109,15 @@ const Search = () => {
                                     channelUrl,
                                     thumbnail,
                                     duration,
+                                    owner,
                                 } = videoData;
                                 if (
                                     !title ||
                                     !id ||
                                     !channelUrl ||
                                     !thumbnail ||
-                                    !duration
+                                    !duration ||
+                                    !owner
                                 )
                                     return null;
                                 console.log(
@@ -134,6 +133,7 @@ const Search = () => {
                                             channelUrl,
                                             thumbnail,
                                             duration,
+                                            owner,
                                         }}
                                     />
                                 );

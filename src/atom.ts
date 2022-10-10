@@ -23,6 +23,10 @@ export interface axiosData {
             thumbnails: IThumbnails[];
         };
         videoId: string;
+        ownerText: {
+            runs: [{ text: string }];
+        };
+        lengthText: { accessibility: { accessibilityData: { label: string } } };
     };
 }
 

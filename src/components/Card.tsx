@@ -10,11 +10,12 @@ interface CardProps {
         channelUrl: string;
         thumbnail: string;
         duration: string;
+        owner: string;
     };
 }
 
 const Card = ({ data }: CardProps) => {
-    const { title, id, channelUrl, thumbnail, duration } = data;
+    const { title, id, thumbnail, duration, owner } = data;
     const [queue, setQueue] = useRecoilState(queueAtom);
 
     const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -23,13 +24,17 @@ const Card = ({ data }: CardProps) => {
             return [...prev, queueUrlTrimmer(targetId)];
         });
     };
+    console.log("owner : ", owner);
 
     return (
         <Wrapper id={id} onClick={cardClickHandler}>
             <Thumbnail thumbnail={thumbnail} />
             <Info>
-                <div>{title}</div>
-                <div>{duration}</div>
+                <Title>{title}</Title>
+                <SubInfo>
+                    <Duration>{duration}</Duration>
+                    <Owner>{owner}</Owner>
+                </SubInfo>
             </Info>
         </Wrapper>
     );
@@ -40,6 +45,37 @@ export default Card;
 interface ThumbnailProps {
     thumbnail: string;
 }
+
+const Info = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    font-weight: 600;
+    background: white;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+    width: 300px;
+    border-radius: 3px;
+    overflow-y: auto;
+`;
+
+const SubInfo = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+`;
+
+const Title = styled.div``;
+
+const Duration = styled.div`
+    font-size: 12.5px;
+    color: rgba(0, 0, 0, 0.8);
+`;
+
+const Owner = styled.div`
+    font-size: 12.5px;
+    color: rgba(0, 0, 0, 0.8);
+`;
 
 const Wrapper = styled.div`
     display: flex;
@@ -60,14 +96,4 @@ const Thumbnail = styled.div<ThumbnailProps>`
     background-size: contain;
     background-repeat: no-repeat;
     width: 200px;
-`;
-
-const Info = styled.div`
-    display: flex;
-    padding: 10px;
-    align-items: flex-start;
-    font-weight: 600;
-    background: white;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
-    width: 300px;
 `;
