@@ -43,6 +43,8 @@ const dataTrimmer = (axiosData: axiosData) => {
 
     const deployTitle = titleDeployRegex.exec(titleData);
     const deployDuration = durationRegex.exec(titleData);
+    if (!deployDuration) return;
+    const returnDuration = deployDuration[0];
 
     console.log(deployTitle);
     /* ID */
@@ -52,7 +54,7 @@ const dataTrimmer = (axiosData: axiosData) => {
         id,
         channelUrl,
         thumbnail,
-        duration: deployDuration,
+        duration: returnDuration,
     };
 };
 
@@ -104,9 +106,20 @@ const Search = () => {
                                 //버리는 데이터 컴포넌트 생성하지 않는 예외처리코드.
                                 if (!videoData) return;
                                 console.log("!videoData", 3);
-                                const { title, id, channelUrl, thumbnail } =
-                                    videoData;
-                                if (!title || !id || !channelUrl || !thumbnail)
+                                const {
+                                    title,
+                                    id,
+                                    channelUrl,
+                                    thumbnail,
+                                    duration,
+                                } = videoData;
+                                if (
+                                    !title ||
+                                    !id ||
+                                    !channelUrl ||
+                                    !thumbnail ||
+                                    !duration
+                                )
                                     return null;
                                 console.log(
                                     "!title || !id || !channelUrl || !thumbnail",
@@ -120,6 +133,7 @@ const Search = () => {
                                             id,
                                             channelUrl,
                                             thumbnail,
+                                            duration,
                                         }}
                                     />
                                 );
