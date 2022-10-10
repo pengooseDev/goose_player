@@ -59,6 +59,7 @@ const Search = () => {
     const overlayToggleHandler = () => {
         setSearchToggle((prev) => false);
     };
+
     return (
         <>
             <Overlay onClick={overlayToggleHandler}></Overlay>
@@ -79,14 +80,21 @@ const Search = () => {
                     ) : (
                         <Cards>
                             {axiosData.map((v, i) => {
+                                console.log(1, v);
                                 const videoData = dataTrimmer(v);
+                                console.log(2, "trimmedData", videoData);
                                 // dataTrimmer에서 거르는 data는 return undefined임.
                                 //버리는 데이터 컴포넌트 생성하지 않는 예외처리코드.
                                 if (!videoData) return;
+                                console.log("!videoData", 3);
                                 const { title, id, channelUrl, thumbnail } =
                                     videoData;
                                 if (!title || !id || !channelUrl || !thumbnail)
                                     return null;
+                                console.log(
+                                    "!title || !id || !channelUrl || !thumbnail",
+                                    4
+                                );
                                 return (
                                     <Card
                                         key={i}
