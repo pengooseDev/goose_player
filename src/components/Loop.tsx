@@ -6,6 +6,7 @@ const Loop = () => {
     const [isLoop, setIsLoop] = useRecoilState(loopAtom);
 
     const loopToggleHandler = () => {
+        console.log(isLoop);
         setIsLoop((prev) => !prev);
     };
 

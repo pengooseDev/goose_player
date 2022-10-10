@@ -73,3 +73,9 @@ export const loopAtom = atom<boolean>({
     key: `loopAtom/${v1()}`,
     default: false,
 });
+
+/* volumeAtom */
+export const volumeAtom = atom<number>({
+    key: `volumeAtom/${v1()}`,
+    default: 0.7,
+});

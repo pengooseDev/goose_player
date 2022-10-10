@@ -8,10 +8,10 @@ import IconSearch from "./search/IconSearch";
 const Controller = () => {
     return (
         <Wrapper>
-            <NextBtn />
             <Pause />
-            <IconSearch />
+            <NextBtn />
             <Loop />
+            <IconSearch />
         </Wrapper>
     );
 };
@@ -29,6 +29,11 @@ const Wrapper = styled.div`
     border-radius: 0px 0px 5px 5px;
 
     transform: skew(20deg, 0deg) rotate(20deg);
+
+    div {
+        margin-right: 5px;
+        box-shadow: 0px 0px 5px rgba(222, 222, 222, 0.5);
+    }
 `;
 
 export default Controller;

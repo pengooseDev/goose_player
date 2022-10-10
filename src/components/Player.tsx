@@ -1,5 +1,11 @@
 import ReactPlayer from "react-player";
-import { queueAtom, queueIndexAtom, isPlayingAtom, loopAtom } from "../atom";
+import {
+    volumeAtom,
+    queueAtom,
+    queueIndexAtom,
+    isPlayingAtom,
+    loopAtom,
+} from "../atom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
@@ -12,6 +18,7 @@ const Player = () => {
     const [queueIndex, setQueueIndex] = useRecoilState<number>(queueIndexAtom);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
     const [isLoop, setIsLoop] = useRecoilState(loopAtom);
+    const [volume, setVolume] = useRecoilState(volumeAtom);
     const playerRef = useRef(null);
 
     const [hasWindow, setHasWindow] = useState(false);
@@ -21,8 +28,8 @@ const Player = () => {
         }
     }, []);
 
-    /* playAlgorithm */
-    const playAlgorithm = () => {
+    /* onEndedHandler */
+    const onEndedHandler = () => {
         console.log("Ended!");
         next();
     };
@@ -52,7 +59,8 @@ const Player = () => {
                         playing={isPlaying}
                         controls={false}
                         loop={isLoop}
-                        onEnded={playAlgorithm}
+                        volume={volume}
+                        onEnded={onEndedHandler}
                     />
                 </PlayerWrapper>
             ) : (
