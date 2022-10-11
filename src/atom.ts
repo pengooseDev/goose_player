@@ -42,7 +42,7 @@ export const loadingAtom = atom<boolean>({
     default: false,
 });
 
-/* player queueAtom */
+/* queueAtom */
 export const queueAtom = atom<queueType>({
     key: `queueAtom/${v1()}`,
     default: [],

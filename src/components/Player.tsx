@@ -12,9 +12,10 @@ import { useEffect, useState, useRef } from "react";
 import Controller from "../../src/components/Controller";
 import defaultImg from "../assets/img/Pengoose.jpeg";
 import Image from "next/image";
+import { queueUrlTrimmer } from "../../pages/api/controller/urlTrimmer";
 
 const Player = () => {
-    const [playerQueue, setPlayerQueue] = useRecoilState<string[]>(queueAtom);
+    const [queue, setQueue] = useRecoilState<string[]>(queueAtom);
     const [queueIndex, setQueueIndex] = useRecoilState<number>(queueIndexAtom);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
     const isLoop = useRecoilValue(loopAtom);
@@ -41,7 +42,7 @@ const Player = () => {
 
     const next = () => {
         //id로 한 번 확인하고 삭제된 노래일 경우 인덱스로 확인.
-        if (queueIndex >= playerQueue.length - 1) {
+        if (queueIndex >= queue.length - 1) {
             console.log("loop");
             return setQueueIndex((prev) => 0);
         }
@@ -54,12 +55,12 @@ const Player = () => {
 
     return (
         <Wrapper>
-            {hasWindow && playerQueue[queueIndex] ? (
+            {hasWindow && queue[queueIndex] ? (
                 <PlayerWrapper>
                     <PlayerOverlay onClick={playingToggle} />
                     <ReactPlayer
                         ref={playerRef}
-                        url={playerQueue[queueIndex]}
+                        url={queueUrlTrimmer(queue[queueIndex])}
                         mute="false"
                         playing={isPlaying}
                         controls={false}

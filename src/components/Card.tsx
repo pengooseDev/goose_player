@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { queueAtom } from "../atom";
 import { useRecoilState } from "recoil";
-import { queueUrlTrimmer } from "../../pages/api/controller/urlTrimmer";
 
 interface CardProps {
     data: {
@@ -21,7 +20,7 @@ const Card = ({ data }: CardProps) => {
     const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const { id: targetId } = e.currentTarget;
         setQueue((prev) => {
-            return [...prev, queueUrlTrimmer(targetId)];
+            return [...prev, targetId];
         });
     };
 
@@ -51,8 +50,7 @@ const Info = styled.div`
     justify-content: space-between;
     padding: 10px;
     font-weight: 600;
-    background: white;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+    background: transparent;
     width: 300px;
     border-radius: 3px;
     overflow-y: auto;
@@ -68,26 +66,25 @@ const Title = styled.div``;
 
 const Duration = styled.div`
     font-size: 12.5px;
-    color: rgba(0, 0, 0, 0.8);
 `;
 
 const Owner = styled.div`
     font-size: 12.5px;
-    color: rgba(0, 0, 0, 0.8);
 `;
 
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
     border-radius: 3px;
     padding: 10px;
     height: 8rem;
     transition: 0.1s ease-in-out;
+    color: #111827;
     :hover {
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.65);
         cursor: pointer;
+        color: #cbd5e1;
     }
 `;
 
@@ -95,5 +92,6 @@ const Thumbnail = styled.div<ThumbnailProps>`
     background: url(${(props) => props.thumbnail});
     background-size: contain;
     background-repeat: no-repeat;
+    border-radius: 5px;
     width: 200px;
 `;
