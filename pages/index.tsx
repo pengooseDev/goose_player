@@ -3,21 +3,21 @@ import Player from "../src/components/Player";
 import Nav from "../src/components/Nav";
 import Search from "../src/components/search/Search";
 import { useRecoilState } from "recoil";
-import { searchToggleAtom } from "../src/atom";
+import { searchToggleAtom, queueToggleAtom } from "../src/atom";
 import styled from "styled-components";
 import Queue from "../src/components/Queue";
 
 const Home: NextPage = () => {
     const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
+    const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
     return (
         <Wrapper>
             <Nav title={"Home"} />
             <RotateComponent>
                 <Player />
-
                 {searchToggle ? <Search /> : null}
-                <Queue />
+                {queueToggle ? <Queue /> : null}
             </RotateComponent>
         </Wrapper>
     );

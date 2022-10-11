@@ -79,3 +79,9 @@ export const volumeAtom = atom<number>({
     key: `volumeAtom/${v1()}`,
     default: 0.7,
 });
+
+/* queueToggleAtom */
+export const queueToggleAtom = atom<boolean>({
+    key: `queueToggleAtom/${v1()}`,
+    default: false,
+});
