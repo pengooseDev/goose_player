@@ -1,39 +1,24 @@
+import React from "react";
 import styled from "styled-components";
-import { queueAtom } from "../atom";
-import { useRecoilState } from "recoil";
 
-interface CardProps {
-    data: {
-        title: RegExpExecArray;
+interface infoProps {
+    [key: string]: {
         id: string;
-        channelUrl: string;
+        title: string[];
         thumbnail: string;
         duration: string;
         owner: string;
     };
 }
 
-const Card = ({ data }: CardProps) => {
-    const { title, id, thumbnail, duration, owner } = data;
-    const [queue, setQueue] = useRecoilState(queueAtom);
+const List = ({ info }: infoProps) => {
+    const { id, duration, owner, thumbnail, title } = info;
 
-    const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        setQueue((prev) => {
-            return {
-                ...prev,
-                [id]: {
-                    id,
-                    title,
-                    thumbnail,
-                    duration,
-                    owner,
-                },
-            };
-        });
+    const listClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+        console.log(e.currentTarget.id);
     };
-
     return (
-        <Wrapper id={id} onClick={cardClickHandler}>
+        <Wrapper onClick={listClickHandler} key={`li-${id}`} id={id}>
             <Thumbnail thumbnail={thumbnail} />
             <Info>
                 <Title>{title}</Title>
@@ -46,7 +31,7 @@ const Card = ({ data }: CardProps) => {
     );
 };
 
-export default Card;
+export default List;
 
 interface ThumbnailProps {
     thumbnail: string;
