@@ -29,6 +29,8 @@ const Player = () => {
     }
   }, []);
 
+  const queueData = Object.entries(queue).map(([v, info], i) => v);
+
   /* onEndedHandler */
   const onEndedHandler = () => {
     if (isLoop) {
@@ -42,7 +44,7 @@ const Player = () => {
 
   const next = () => {
     //id로 한 번 확인하고 삭제된 노래일 경우 인덱스로 확인.
-    if (queueIndex >= queue.length - 1) {
+    if (queueIndex >= queueData.length - 1) {
       console.log("loop");
       return setQueueIndex((prev) => 0);
     }
@@ -57,8 +59,6 @@ const Player = () => {
   Object.entries(queue)
    */
 
-  const queueData = Object.entries(queue).map(([v, info], i) => v);
-  console.log(queueData);
   return (
     <Wrapper>
       {hasWindow && queueData[queueIndex] ? (
