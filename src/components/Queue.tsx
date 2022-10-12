@@ -7,11 +7,13 @@ const Queue = () => {
   const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
   const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
+  const queueData = Object.entries(queue).map(([v, info], i) => v);
+
   return (
     <Wrapper>
       <Title>Queue</Title>
       <QueueList>
-        {Object.entries(queue).map((v, i) => (
+        {Object.entries(queueData).map((v, i) => (
           <Item key={i}>
             <div>{v}</div>
           </Item>
