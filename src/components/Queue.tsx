@@ -5,7 +5,6 @@ import List from "./List";
 
 const Queue = () => {
     const [queue, setQueue] = useRecoilState(queueAtom);
-    const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
     const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
     const overlayToggleHandler = () => {
@@ -23,9 +22,9 @@ const Queue = () => {
                         <Exit />
                     </Title>
                     <QueueList>
-                        {Object.entries(queue).map(([key, value], i) => (
-                            <List info={Object(value)} />
-                        ))}
+                        {Object.entries(queue).map(([v, info], i) => {
+                            return <List key={i} info={Object(info)} />;
+                        })}
                     </QueueList>
                 </Wrapper>
             </Container>
@@ -33,7 +32,7 @@ const Queue = () => {
     );
 };
 
-//Object.entries(queue).map([key,value],i) = > {}
+//Object.entries(queue).map([v,info],i) = > {}
 //위 경우 value가 type이 무엇이든 넘어갈 때 string으로 넘어가고 다시 형 변환 되는듯.
 
 export default Queue;

@@ -42,7 +42,7 @@ const dataTrimmer = (axiosData: axiosData) => {
     const owner = axiosData.videoRenderer?.ownerText.runs[0].text;
 
     const duration =
-        axiosData.videoRenderer?.lengthText.accessibility.accessibilityData
+        axiosData.videoRenderer?.lengthText?.accessibility?.accessibilityData
             .label;
 
     return {

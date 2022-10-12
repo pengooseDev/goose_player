@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 
     return (
         <Wrapper>
-            <Nav title={"Home"} />
+            <Nav title={"Goose Player"} />
             <RotateComponent>
                 <Player />
                 {searchToggle ? <Search /> : null}

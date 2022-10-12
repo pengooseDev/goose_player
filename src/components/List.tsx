@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { queueIndexAtom } from "../atom";
+import { useRecoilState } from "recoil";
 
 interface infoProps {
     [key: string]: {
@@ -12,10 +14,13 @@ interface infoProps {
 }
 
 const List = ({ info }: infoProps) => {
+    const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
+
     const { id, duration, owner, thumbnail, title } = info;
 
     const listClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         console.log(e.currentTarget.id);
+        //id 찾아서 해당 인덱스 넘겨줘야함.
     };
     return (
         <Wrapper onClick={listClickHandler} key={`li-${id}`} id={id}>
