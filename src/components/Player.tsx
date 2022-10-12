@@ -57,16 +57,16 @@ const Player = () => {
   Object.entries(queue)
    */
 
-  const queueDataArray = Object.entries(queue).map(([v, info], i) => v);
-  console.log(queueDataArray);
+  const queueData = Object.entries(queue).map(([v, info], i) => v);
+  console.log(queueData);
   return (
     <Wrapper>
-      {hasWindow && queueDataArray[queueIndex] ? (
+      {hasWindow && queueData[queueIndex] ? (
         <PlayerWrapper>
           <PlayerOverlay onClick={playingToggle} />
           <ReactPlayer
             ref={playerRef}
-            url={queueUrlTrimmer(queueDataArray[queueIndex])}
+            url={queueUrlTrimmer(queueData[queueIndex])}
             mute="false"
             playing={isPlaying}
             controls={false}
