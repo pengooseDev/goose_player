@@ -87,7 +87,7 @@ const Search = () => {
                 //exit="exit"
                 >
                     <Title>
-                        <span>Data</span>
+                        <span>Search</span>
                         <Exit />
                     </Title>
                     <SearchBar />
@@ -199,6 +199,7 @@ const Exit = () => {
     const exitToggleHandler = () => {
         setToggleState((prev) => false);
     };
+
     return (
         <ExitWrapper onClick={exitToggleHandler}>
             <svg
