@@ -46,10 +46,8 @@ const Info = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
-    font-weight: 600;
     background: transparent;
-    width: 300px;
+    width: 250px;
     border-radius: 3px;
     overflow-y: auto;
 `;
@@ -60,7 +58,10 @@ const SubInfo = styled.div`
     justify-content: space-between;
 `;
 
-const Title = styled.div``;
+const Title = styled.div`
+    font-size: 13px;
+    font-weight: 600;
+`;
 
 const Duration = styled.div`
     font-size: 12.5px;
@@ -72,17 +73,16 @@ const Owner = styled.div`
 
 const Wrapper = styled.div`
     display: flex;
+    color: #cbd5e1;
     justify-content: space-between;
-    background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
     padding: 10px;
     height: 8rem;
     transition: 0.1s ease-in-out;
-    color: #111827;
+    border-radius: 5px;
     :hover {
         background: rgba(0, 0, 0, 0.65);
         cursor: pointer;
-        color: #cbd5e1;
     }
 `;
 

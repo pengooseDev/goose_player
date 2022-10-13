@@ -13,12 +13,8 @@ const Home: NextPage = () => {
     const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
     const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
-    const globalToggleHandler = () => {
-        console.log(1);
-        setQueueToggle((prev) => false);
-    };
     return (
-        <Wrapper onClick={globalToggleHandler}>
+        <Wrapper>
             <Nav title={"Goose Player"} />
             <RotateComponent>
                 <Player />
@@ -27,7 +23,7 @@ const Home: NextPage = () => {
                     {queueToggle && <Queue />}
                 </AnimatePresence>
             </RotateComponent>
-            <QueueToggleBtn />
+            {!queueToggle && <QueueToggleBtn />}
         </Wrapper>
     );
 };

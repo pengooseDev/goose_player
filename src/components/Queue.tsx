@@ -28,13 +28,16 @@ const Queue = () => {
             exit="exit"
         >
             <Wrapper>
-                <QueueToggleBtn />
+                <Header>
+                    {queueToggle ? <QueueToggleBtn /> : <>|</>}
+                    <Title>Your Queue</Title>
+                </Header>
                 <QueueWrapper>
                     <QueueList>
                         {Object.entries(queue).map(([v, info], i) => {
                             return (
                                 <List
-                                    key={Object(info).id + i}
+                                    key={`${Object(info).id} + ${i}`}
                                     info={Object(info)}
                                 />
                             );
@@ -54,13 +57,13 @@ export default Queue;
 /* Framer */
 
 const wrapperVariants = {
-    from: { left: -600, opacity: 1 },
+    from: { left: -360, opacity: 1 },
     to: {
         left: 0,
         opacity: 1,
         transition: { type: "linear", duration: 0.15 },
     },
-    exit: { left: -600, opacity: 0, transition: { duration: 0.15 } },
+    exit: { left: -360, opacity: 0, transition: { duration: 0.15 } },
 };
 
 const Container = styled(motion.div)<{ queueToggle: boolean }>`
@@ -73,30 +76,29 @@ const Container = styled(motion.div)<{ queueToggle: boolean }>`
 `;
 
 const Wrapper = styled.div`
-    background: #111;
+    background: rgb(30, 30, 30);
     backdrop-filter: blur(10px);
     position: relative;
     z-index: 5;
     display: flex;
     flex-direction: column;
-    width: 570px;
+    width: 500px;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 1px 3px 15px rgba(111, 111, 111, 0.5);
+`;
+
+const Header = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 5px 10px 0px;
 `;
 
 const Title = styled.div`
-    background: #111;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 30px;
+    color: whitesmoke;
     font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-bottom: 13.5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    font-size: 20px;
+    padding: 5px 0px;
 `;
 
 const QueueWrapper = styled.div`
@@ -108,7 +110,6 @@ const QueueList = styled.div`
     display: grid;
     grid-template-rows: repeat(1, minmax(0, 1fr));
     grid-auto-flow: row;
-    gap: 10px;
     padding-right: 10px;
 `;
 
