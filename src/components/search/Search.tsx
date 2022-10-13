@@ -1,74 +1,12 @@
-import {
-    axiosAtom,
-    axiosData,
-    loadingAtom,
-    searchToggleAtom,
-} from "../../atom";
+import { axiosAtom, loadingAtom, searchToggleAtom } from "../../atom";
 import { useRecoilState } from "recoil";
 import Card from "../Card";
 import styled from "styled-components";
 import SearchBar from "../../components/search/SearchBar";
 import { motion } from "framer-motion";
 
-const dataTrimmer = (axiosData: axiosData) => {
-    /* ChannelUrl */
-    const info =
-        axiosData.videoRenderer?.channelThumbnailSupportedRenderers
-            .channelThumbnailWithLinkRenderer;
-    const channelId = info?.navigationEndpoint.canonicalBaseUrl;
-    const channelUrl = `https://www.youtube.com/${channelId}`;
-
-    /* thumbnail */
-    const thumbnailData = axiosData.videoRenderer?.thumbnail?.thumbnails[0];
-    const thumbnail = thumbnailData?.url;
-
-    //유튜브 쇼츠인 경우, 이미지 크기 맞추기 힘듦. 썸네일 세로>가로면 버리기.
-    if (!thumbnailData) return;
-    const { height, width } = thumbnailData;
-    if (height > width) return;
-
-    /* Title */
-    const titleData =
-        axiosData.videoRenderer?.title.accessibility.accessibilityData.label;
-
-    //axios가 받아오는 데이터 형식이 local, vercel에 따라 다름. (title에 정규표현식 안먹음!)
-    /* Local용 */
-    const titleLocalRegex = /^.*? (?=게시자: )/g; //텍스트의 처음부터 "게시자"의 전방탐색까지.
-    const title = titleLocalRegex.exec(titleData);
-
-    /* ID */
-    const id = axiosData.videoRenderer?.videoId;
-
-    const owner = axiosData.videoRenderer?.ownerText.runs[0].text;
-
-    const duration =
-        axiosData.videoRenderer?.lengthText?.accessibility?.accessibilityData
-            .label;
-
-    return {
-        title,
-        id,
-        channelUrl,
-        thumbnail,
-        duration,
-        owner,
-    };
-}; //
-
-const toggleVariants = {
-    from: {
-        opacity: 0,
-    },
-    to: {
-        opacity: 1,
-    },
-    exit: {
-        opacity: 0,
-    },
-};
-
 const Search = () => {
-    const [axiosData, setAxiosData] = useRecoilState<axiosData[]>(axiosAtom);
+    const [axiosData, setAxiosData] = useRecoilState(axiosAtom);
     const [isLoading, setLoading] = useRecoilState<boolean>(loadingAtom);
     const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
 
@@ -95,15 +33,10 @@ const Search = () => {
                         "Loading"
                     ) : (
                         <Cards>
-                            {axiosData.map((v, i) => {
-                                const videoData = dataTrimmer(v);
-                                // dataTrimmer에서 거르는 data는 return undefined임.
-                                //버리는 데이터 컴포넌트 생성하지 않는 예외처리코드.
-                                if (!videoData) return;
+                            {axiosData.map((videoData, i) => {
                                 const {
                                     title,
                                     id,
-                                    channelUrl,
                                     thumbnail,
                                     duration,
                                     owner,
@@ -111,7 +44,6 @@ const Search = () => {
                                 if (
                                     !title ||
                                     !id ||
-                                    !channelUrl ||
                                     !thumbnail ||
                                     !duration ||
                                     !owner
@@ -123,7 +55,6 @@ const Search = () => {
                                         data={{
                                             title,
                                             id,
-                                            channelUrl,
                                             thumbnail,
                                             duration,
                                             owner,

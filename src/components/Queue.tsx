@@ -3,6 +3,16 @@ import { queueIndexAtom, queueAtom, queueToggleAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import List from "./List";
 
+interface Info {
+    id: string;
+    title: string[];
+    thumbnail: string;
+    duration: string;
+    owner: string;
+}
+
+type Queue = Info[];
+
 const Queue = () => {
     const [queue, setQueue] = useRecoilState(queueAtom);
     const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
@@ -11,10 +21,10 @@ const Queue = () => {
         setQueueToggle((prev) => false);
     };
 
+    console.log("!!!!!!!", queue);
     return (
         <>
             <Overlay onClick={overlayToggleHandler}></Overlay>
-
             <Container>
                 <Wrapper>
                     <Title>
@@ -23,7 +33,12 @@ const Queue = () => {
                     </Title>
                     <QueueList>
                         {Object.entries(queue).map(([v, info], i) => {
-                            return <List key={i} info={Object(info)} />;
+                            return (
+                                <List
+                                    key={Object(info).id}
+                                    info={Object(info)}
+                                />
+                            );
                         })}
                     </QueueList>
                 </Wrapper>

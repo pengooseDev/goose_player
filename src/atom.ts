@@ -1,40 +1,12 @@
 import { atom } from "recoil";
 import { v1 } from "uuid";
+import { Video } from "./types";
 
 /* Axios Atom */
-export const axiosAtom = atom<axiosData[]>({
+export const axiosAtom = atom<Video[]>({
     key: `axiosAtom/${v1()}`,
     default: [],
 });
-
-export interface axiosData {
-    videoRenderer: {
-        channelThumbnailSupportedRenderers: {
-            channelThumbnailWithLinkRenderer: {
-                navigationEndpoint: {
-                    canonicalBaseUrl: string;
-                };
-            };
-        };
-        title: {
-            accessibility: { accessibilityData: { label: string } };
-        };
-        thumbnail: {
-            thumbnails: IThumbnails[];
-        };
-        videoId: string;
-        ownerText: {
-            runs: [{ text: string }];
-        };
-        lengthText: { accessibility: { accessibilityData: { label: string } } };
-    };
-}
-
-interface IThumbnails {
-    url: string;
-    height: number;
-    width: number;
-}
 
 /* loadingAtom */
 export const loadingAtom = atom<boolean>({
@@ -43,12 +15,10 @@ export const loadingAtom = atom<boolean>({
 });
 
 /* queueAtom */
-export const queueAtom = atom<queueType>({
+export const queueAtom = atom<Video[]>({
     key: `queueAtom/${v1()}`,
     default: [],
 });
-
-type queueType = string[];
 
 /* searchToggleAtom */
 export const searchToggleAtom = atom({

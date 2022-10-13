@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import { searchToggleAtom, queueToggleAtom } from "../src/atom";
 import styled from "styled-components";
 import Queue from "../src/components/Queue";
+import QueueToggleBtn from "../src/components/OpenQueueBtn";
 
 const Home: NextPage = () => {
     const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
                 {searchToggle ? <Search /> : null}
                 {queueToggle ? <Queue /> : null}
             </RotateComponent>
+            <QueueToggleBtn />
         </Wrapper>
     );
 };

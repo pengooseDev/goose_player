@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import { queueAtom } from "../atom";
 import { useRecoilState } from "recoil";
+import { Video } from "../types";
 
-interface CardProps {
-    data: {
-        title: RegExpExecArray;
-        id: string;
-        channelUrl: string;
-        thumbnail: string;
-        duration: string;
-        owner: string;
-    };
-}
+type CardProps = {
+    data: Video;
+};
+
+const obj = {
+    a: "a",
+    b: "b",
+    c: "c",
+};
+
+const { a, ...data } = obj;
 
 const Card = ({ data }: CardProps) => {
     const { title, id, thumbnail, duration, owner } = data;
@@ -19,16 +21,7 @@ const Card = ({ data }: CardProps) => {
 
     const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         setQueue((prev) => {
-            return {
-                ...prev,
-                [id]: {
-                    id,
-                    title,
-                    thumbnail,
-                    duration,
-                    owner,
-                },
-            };
+            return [...prev, data];
         });
     };
 

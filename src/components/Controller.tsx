@@ -4,15 +4,7 @@ import Loop from "./Loop";
 import Pause from "./Pause";
 import Volume from "./Volume";
 import IconSearch from "./search/IconSearch";
-
-import { useRecoilState } from "recoil";
-import { queueToggleAtom } from "../atom";
-
 const Controller = () => {
-    const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
-    const queueToggleHandler = () => {
-        setQueueToggle((prev) => !prev);
-    };
     return (
         <Wrapper>
             <Pause />
@@ -20,7 +12,6 @@ const Controller = () => {
             <Loop />
             <IconSearch />
             <Volume />
-            <button onClick={queueToggleHandler}>Queue</button>
         </Wrapper>
     );
 };

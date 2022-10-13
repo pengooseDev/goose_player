@@ -4,7 +4,7 @@ import { queueIndexAtom } from "../atom";
 import { useRecoilState } from "recoil";
 
 interface infoProps {
-    [key: string]: {
+    info: {
         id: string;
         title: string[];
         thumbnail: string;
