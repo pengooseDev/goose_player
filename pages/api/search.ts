@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import { Video } from "../../src/types";
 
 export default async function handler(
     req: NextApiRequest,
@@ -36,9 +37,20 @@ export default async function handler(
                         .primaryContents.sectionListRenderer?.contents[0]
                         .itemSectionRenderer.contents;
 
-                returnData.map((data: any) => dataTrimmer(data));
+                const filtered = returnData
+                    .map((data: any) => dataTrimmer(data))
+                    .filter((data: Video) => {
+                        if (!data) return false;
+                        for (const item in data) {
+                            if (!item) return false;
+                        }
+                        return true;
+                        // !Object.values(data)
+                        //     .map((value) => !!value)
+                        //     .includes(false)
+                    });
 
-                return res.status(200).json({ result: returnData });
+                return res.status(200).json({ result: filtered });
                 //HTML을 string 데이터로 받아온 것 중 필요한 데이터가 있는 부분만 일단 chuncking
             } catch (err) {
                 console.log("getERR : ", err);

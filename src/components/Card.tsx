@@ -3,19 +3,7 @@ import { queueAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import { Video } from "../types";
 
-type CardProps = {
-    data: Video;
-};
-
-const obj = {
-    a: "a",
-    b: "b",
-    c: "c",
-};
-
-const { a, ...data } = obj;
-
-const Card = ({ data }: CardProps) => {
+const Card = ({ data }: { data: Video }) => {
     const { title, id, thumbnail, duration, owner } = data;
     const [queue, setQueue] = useRecoilState(queueAtom);
 

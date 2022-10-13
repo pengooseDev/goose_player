@@ -27,7 +27,7 @@ export const searchToggleAtom = atom({
 });
 
 /* Queue Index */
-export const queueIndexAtom = atom({
+export const queueIndexAtom = atom<number>({
     key: `queueIndexAtom/${v1()}`,
     default: 0,
 });

@@ -6,19 +6,26 @@ import { useRecoilState } from "recoil";
 import { searchToggleAtom, queueToggleAtom } from "../src/atom";
 import styled from "styled-components";
 import Queue from "../src/components/Queue";
-import QueueToggleBtn from "../src/components/OpenQueueBtn";
+import QueueToggleBtn from "../src/components/QueueToggleBtn";
+import { AnimatePresence } from "framer-motion";
 
 const Home: NextPage = () => {
     const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
     const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
+    const globalToggleHandler = () => {
+        console.log(1);
+        setQueueToggle((prev) => false);
+    };
     return (
-        <Wrapper>
+        <Wrapper onClick={globalToggleHandler}>
             <Nav title={"Goose Player"} />
             <RotateComponent>
                 <Player />
-                {searchToggle ? <Search /> : null}
-                {queueToggle ? <Queue /> : null}
+                <AnimatePresence>
+                    {searchToggle && <Search />}
+                    {queueToggle && <Queue />}
+                </AnimatePresence>
             </RotateComponent>
             <QueueToggleBtn />
         </Wrapper>

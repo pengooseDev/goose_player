@@ -34,33 +34,7 @@ const Search = () => {
                     ) : (
                         <Cards>
                             {axiosData.map((videoData, i) => {
-                                const {
-                                    title,
-                                    id,
-                                    thumbnail,
-                                    duration,
-                                    owner,
-                                } = videoData;
-                                if (
-                                    !title ||
-                                    !id ||
-                                    !thumbnail ||
-                                    !duration ||
-                                    !owner
-                                )
-                                    return null;
-                                return (
-                                    <Card
-                                        key={i}
-                                        data={{
-                                            title,
-                                            id,
-                                            thumbnail,
-                                            duration,
-                                            owner,
-                                        }}
-                                    />
-                                );
+                                return <Card key={i} data={videoData} />;
                             })}
                         </Cards>
                     )}

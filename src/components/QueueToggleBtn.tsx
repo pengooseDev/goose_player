@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { queueToggleAtom } from "../../src/atom";
+import { queueToggleAtom } from "../atom";
 
 const QueueToggleBtn = () => {
     const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
@@ -49,11 +49,17 @@ const QueueToggleBtn = () => {
 export default QueueToggleBtn;
 
 const Wrapper = styled.div<{ queueToggle: boolean }>`
+    position: ${(props) => (props.queueToggle ? null : "absolute")};
+    z-index: 3;
+    left: ${(props) => (props.queueToggle ? "0px" : "0px")};
+    top: 50%;
+
     width: 36px;
     height: 36px;
     border-radius: 18px;
     padding: 3px;
     font-weight: 600;
+    left: 10px;
 
     color: ${(props) =>
         props.queueToggle ? "rgba(222, 222, 222, 1)" : "#111"};
@@ -64,8 +70,10 @@ const Wrapper = styled.div<{ queueToggle: boolean }>`
     justify-content: center;
     transition: 0.2s ease-in-out;
     :hover {
-        background: rgba(200, 200, 200, 1);
-        color: #111;
+        background: ${(props) =>
+            props.queueToggle ? "#111" : "rgba(222, 222, 222, 1)"};
+        color: ${(props) =>
+            props.queueToggle ? "rgba(222, 222, 222, 1)" : "#111"};
         cursor: pointer;
     }
 `;

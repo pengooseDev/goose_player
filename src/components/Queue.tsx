@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { queueIndexAtom, queueAtom, queueToggleAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import List from "./List";
+import { motion } from "framer-motion";
+import QueueToggleBtn from "./QueueToggleBtn";
 
 interface Info {
     id: string;
@@ -17,33 +19,30 @@ const Queue = () => {
     const [queue, setQueue] = useRecoilState(queueAtom);
     const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
-    const overlayToggleHandler = () => {
-        setQueueToggle((prev) => false);
-    };
-
-    console.log("!!!!!!!", queue);
     return (
-        <>
-            <Overlay onClick={overlayToggleHandler}></Overlay>
-            <Container>
-                <Wrapper>
-                    <Title>
-                        <span>My Play List</span>
-                        <Exit />
-                    </Title>
+        <Container
+            queueToggle={queueToggle}
+            variants={wrapperVariants}
+            initial="from"
+            animate="to"
+            exit="exit"
+        >
+            <Wrapper>
+                <QueueToggleBtn />
+                <QueueWrapper>
                     <QueueList>
                         {Object.entries(queue).map(([v, info], i) => {
                             return (
                                 <List
-                                    key={Object(info).id}
+                                    key={Object(info).id + i}
                                     info={Object(info)}
                                 />
                             );
                         })}
                     </QueueList>
-                </Wrapper>
-            </Container>
-        </>
+                </QueueWrapper>
+            </Wrapper>
+        </Container>
     );
 };
 
@@ -52,24 +51,29 @@ const Queue = () => {
 
 export default Queue;
 
-const Overlay = styled.div`
-    position: fixed;
-    z-index: 1;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-`;
+/* Framer */
 
-const Container = styled.div`
+const wrapperVariants = {
+    from: { left: -600, opacity: 1 },
+    to: {
+        left: 0,
+        opacity: 1,
+        transition: { type: "linear", duration: 0.15 },
+    },
+    exit: { left: -600, opacity: 0, transition: { duration: 0.15 } },
+};
+
+const Container = styled(motion.div)<{ queueToggle: boolean }>`
+    transition: ease-in-out;
     position: absolute;
     top: 20%;
     display: flex;
     justify-content: center;
+    z-index: 3;
 `;
 
 const Wrapper = styled.div`
-    background: rgba(255, 255, 255, 0.2);
+    background: #111;
     backdrop-filter: blur(10px);
     position: relative;
     z-index: 5;
@@ -95,12 +99,16 @@ const Title = styled.div`
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
 `;
 
-const QueueList = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+const QueueWrapper = styled.div`
     height: 600px;
     overflow-y: auto;
+`;
+
+const QueueList = styled.div`
+    display: grid;
+    grid-template-rows: repeat(1, minmax(0, 1fr));
+    grid-auto-flow: row;
+    gap: 10px;
     padding-right: 10px;
 `;
 
