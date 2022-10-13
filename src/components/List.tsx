@@ -42,6 +42,21 @@ interface ThumbnailProps {
     thumbnail: string;
 }
 
+const Wrapper = styled.div`
+    display: flex;
+    color: #cbd5e1;
+    justify-content: space-between;
+    border-radius: 3px;
+    padding: 10px;
+    height: 100px;
+    transition: 0.1s ease-in-out;
+    border-radius: 5px;
+    :hover {
+        background: rgba(0, 0, 0, 0.65);
+        cursor: pointer;
+    }
+`;
+
 const Info = styled.div`
     display: flex;
     flex-direction: column;
@@ -61,6 +76,13 @@ const SubInfo = styled.div`
 const Title = styled.div`
     font-size: 13px;
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 40px;
+    word-wrap: brek-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 `;
 
 const Duration = styled.div`
@@ -71,25 +93,10 @@ const Owner = styled.div`
     font-size: 12.5px;
 `;
 
-const Wrapper = styled.div`
-    display: flex;
-    color: #cbd5e1;
-    justify-content: space-between;
-    border-radius: 3px;
-    padding: 10px;
-    height: 8rem;
-    transition: 0.1s ease-in-out;
-    border-radius: 5px;
-    :hover {
-        background: rgba(0, 0, 0, 0.65);
-        cursor: pointer;
-    }
-`;
-
 const Thumbnail = styled.div<ThumbnailProps>`
     background: url(${(props) => props.thumbnail});
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 5px;
-    width: 200px;
+    width: 150px;
 `;

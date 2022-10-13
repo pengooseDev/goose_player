@@ -21,7 +21,6 @@ const Queue = () => {
 
     return (
         <Container
-            queueToggle={queueToggle}
             variants={wrapperVariants}
             initial="from"
             animate="to"
@@ -37,7 +36,7 @@ const Queue = () => {
                         {Object.entries(queue).map(([v, info], i) => {
                             return (
                                 <List
-                                    key={`${Object(info).id} + ${i}`}
+                                    key={`queue${Object(info).id} + ${i}`}
                                     info={Object(info)}
                                 />
                             );
@@ -66,7 +65,7 @@ const wrapperVariants = {
     exit: { left: -360, opacity: 0, transition: { duration: 0.15 } },
 };
 
-const Container = styled(motion.div)<{ queueToggle: boolean }>`
+const Container = styled(motion.div)`
     transition: ease-in-out;
     position: absolute;
     top: 20%;
@@ -82,7 +81,7 @@ const Wrapper = styled.div`
     z-index: 5;
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 450px;
     padding: 10px;
     border-radius: 5px;
 `;

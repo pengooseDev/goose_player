@@ -18,7 +18,7 @@ const Controller = () => {
 
 const Wrapper = styled.div`
     position: relative;
-    right: 20px;
+    right: -20px;
 
     display: flex;
     justify-content: center;
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     padding: 10px;
     border-radius: 0px 0px 5px 5px;
 
-    transform: skew(20deg, 0deg) rotate(20deg);
+    transform: skew(20deg) rotate(20deg);
 
     div {
         margin-right: 5px;

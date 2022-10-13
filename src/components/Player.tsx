@@ -95,7 +95,7 @@ export default Player;
 const Monitor = styled.div`
     width: 640px;
     height: 360px;
-    transform: skew(20deg, 0deg) rotate(20deg);
+    transform: skew(20deg) rotate(20deg);
 `;
 
 const Wrapper = styled.div`
@@ -108,7 +108,7 @@ const Wrapper = styled.div`
 `;
 
 const PlayerWrapper = styled.div`
-    transform: skew(20deg, 0deg) rotate(20deg);
+    transform: skew(20deg) rotate(20deg);
 `;
 
 const PlayerOverlay = styled.div`
