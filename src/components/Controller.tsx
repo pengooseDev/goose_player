@@ -18,7 +18,7 @@ const Controller = () => {
 
 const Wrapper = styled.div`
     position: relative;
-    right: -20px;
+    right: 20px;
 
     display: flex;
     justify-content: center;

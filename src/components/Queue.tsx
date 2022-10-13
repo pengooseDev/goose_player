@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import List from "./List";
 import { motion } from "framer-motion";
 import QueueToggleBtn from "./QueueToggleBtn";
+import { AnimatePresence } from "framer-motion";
 
 interface Info {
     id: string;
@@ -20,31 +21,41 @@ const Queue = () => {
     const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
     return (
-        <Container
-            variants={wrapperVariants}
-            initial="from"
-            animate="to"
-            exit="exit"
-        >
-            <Wrapper>
-                <Header>
-                    {queueToggle ? <QueueToggleBtn /> : <>|</>}
-                    <Title>Your Queue</Title>
-                </Header>
-                <QueueWrapper>
-                    <QueueList>
-                        {Object.entries(queue).map(([v, info], i) => {
-                            return (
-                                <List
-                                    key={`queue${Object(info).id} + ${i}`}
-                                    info={Object(info)}
-                                />
-                            );
-                        })}
-                    </QueueList>
-                </QueueWrapper>
-            </Wrapper>
-        </Container>
+        <>
+            {queueToggle ? (
+                <AnimatePresence>
+                    <Container
+                        variants={wrapperVariants}
+                        initial="from"
+                        animate="to"
+                        exit="exit"
+                    >
+                        <Wrapper>
+                            <Header>
+                                {queueToggle ? <QueueToggleBtn /> : <>|</>}
+                                <Title>Your Queue</Title>
+                            </Header>
+                            <QueueWrapper>
+                                <QueueList>
+                                    {Object.entries(queue).map(
+                                        ([v, info], i) => {
+                                            return (
+                                                <List
+                                                    key={`${
+                                                        Object(info).id
+                                                    }queue${i}`}
+                                                    info={Object(info)}
+                                                />
+                                            );
+                                        }
+                                    )}
+                                </QueueList>
+                            </QueueWrapper>
+                        </Wrapper>
+                    </Container>
+                </AnimatePresence>
+            ) : null}
+        </>
     );
 };
 

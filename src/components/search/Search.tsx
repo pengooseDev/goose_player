@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import Card from "../Card";
 import styled from "styled-components";
 import SearchBar from "../../components/search/SearchBar";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Search = () => {
     const [axiosData, setAxiosData] = useRecoilState(axiosAtom);
@@ -16,30 +16,41 @@ const Search = () => {
 
     return (
         <>
-            <Overlay onClick={overlayToggleHandler}></Overlay>
-            <Container>
-                <Wrapper
-                //variants={toggleVariants}
-                //initial="from"
-                //animate="to"
-                //exit="exit"
-                >
-                    <Title>
-                        <span>Search</span>
-                        <Exit />
-                    </Title>
-                    <SearchBar />
-                    {isLoading ? (
-                        "Loading"
-                    ) : (
-                        <Cards>
-                            {axiosData.map((videoData, i) => {
-                                return <Card key={i} data={videoData} />;
-                            })}
-                        </Cards>
-                    )}
-                </Wrapper>
-            </Container>
+            {searchToggle ? (
+                <>
+                    <Overlay onClick={overlayToggleHandler}></Overlay>
+                    <AnimatePresence>
+                        <Container
+                            variants={containerVar}
+                            initial="from"
+                            animate="to"
+                            exit="exit"
+                        >
+                            <Wrapper>
+                                <Title>
+                                    <span>Search</span>
+                                    <Exit />
+                                </Title>
+                                <SearchBar />
+                                {isLoading ? (
+                                    "Loading"
+                                ) : (
+                                    <Cards>
+                                        {axiosData.map((videoData, i) => {
+                                            return (
+                                                <Card
+                                                    key={`${i}search${videoData.id}`}
+                                                    data={videoData}
+                                                />
+                                            );
+                                        })}
+                                    </Cards>
+                                )}
+                            </Wrapper>
+                        </Container>
+                    </AnimatePresence>
+                </>
+            ) : null}
         </>
     );
 };
@@ -55,7 +66,19 @@ const Overlay = styled.div`
     height: 100vh;
 `;
 
-const Container = styled.div`
+const containerVar = {
+    from: {
+        opacity: 0,
+    },
+    to: {
+        opacity: 1,
+    },
+    exit: {
+        opacity: 0,
+    },
+};
+
+const Container = styled(motion.div)`
     position: absolute;
     top: 20%;
     display: flex;
