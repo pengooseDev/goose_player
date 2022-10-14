@@ -1,4 +1,9 @@
-import { axiosAtom, loadingAtom, searchToggleAtom } from "../../atom";
+import {
+    axiosAtom,
+    loadingAtom,
+    searchToggleAtom,
+    queueToggleAtom,
+} from "../../atom";
 import { useRecoilState } from "recoil";
 import Card from "../Card";
 import styled from "styled-components";
@@ -9,9 +14,11 @@ const Search = () => {
     const [axiosData, setAxiosData] = useRecoilState(axiosAtom);
     const [isLoading, setLoading] = useRecoilState<boolean>(loadingAtom);
     const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
+    const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
     const overlayToggleHandler = () => {
         setSearchToggle((prev) => false);
+        setQueueToggle((prev) => false);
     };
 
     return (

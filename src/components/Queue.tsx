@@ -1,15 +1,9 @@
 import styled from "styled-components";
-import {
-    DragDropContext,
-    Draggable,
-    Droppable,
-    DropResult,
-} from "react-beautiful-dnd";
-import { queueAtom, queueToggleAtom } from "../atom";
+import { Droppable, DropResult, DragDropContext } from "react-beautiful-dnd";
+import { queueAtom, queueIndexAtom, queueToggleAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import List from "./List";
 import { motion } from "framer-motion";
-import QueueToggleBtn from "./QueueToggleBtn";
 import { AnimatePresence } from "framer-motion";
 
 interface Info {
@@ -25,9 +19,34 @@ type Queue = Info[];
 const Queue = () => {
     const [queue, setQueue] = useRecoilState(queueAtom);
     const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
+    const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
 
+    const dragEndHandler = (info: DropResult) => {
+        const { source, destination } = info;
+        if (!destination) return; //Cancel Drag exception
+
+        //데이터 변경.
+        setQueue((prev) => {
+            const queueData = [...prev];
+            const targetData = queueData[source.index];
+            queueData.splice(source.index, 1);
+            queueData.splice(destination.index, 0, targetData);
+            return queueData;
+            //이전 데이터 삭제.
+            //위치에 추가.
+        });
+
+        //재생 중인 곡을 옮길 때 queueIndex유지.
+        if (source.index === queueIndex) {
+            setQueueIndex((prev) => destination.index);
+        }
+        //재생 중이지 않은 곡을 현재 재생중인 queueIndex로 옮길 때 유지.
+        if (destination.index === queueIndex) {
+            setQueueIndex((prev) => source.index);
+        }
+    };
     return (
-        <>
+        <DragDropContext onDragEnd={dragEndHandler}>
             <AnimatePresence>
                 {queueToggle ? (
                     <Container
@@ -69,7 +88,7 @@ const Queue = () => {
                     </Container>
                 ) : null}
             </AnimatePresence>
-        </>
+        </DragDropContext>
     );
 };
 
@@ -98,7 +117,7 @@ const Container = styled(motion.div)`
 `;
 
 const Wrapper = styled.div`
-    background: rgb(30, 30, 30);
+    background: rgba(15, 15, 15, 0.5);
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;

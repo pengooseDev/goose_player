@@ -1,36 +1,43 @@
 import type { NextPage } from "next";
 import Player from "../src/components/Player";
-import Nav from "../src/components/Nav";
 import Search from "../src/components/search/Search";
-import { DragDropContext } from "react-beautiful-dnd";
 import styled from "styled-components";
 import Queue from "../src/components/Queue";
 import QueueToggleBtn from "../src/components/QueueToggleBtn";
+import { useRecoilState } from "recoil";
+import { queueToggleAtom } from "../src/atom";
 
 const Home: NextPage = () => {
-    const s = () => {
-        console.log(1);
-    };
-    const e = () => {
-        console.log(2);
-    };
     return (
         <>
-            <DragDropContext onDragStart={s} onDragEnd={e}>
-                <Wrapper>
-                    <RotateComponent>
-                        <Player />
-                        <Search />
-                    </RotateComponent>
-                    <QueueToggleBtn />
-                </Wrapper>
-                <Queue />
-            </DragDropContext>
+            <TopContainer />
+            <Queue />
         </>
     );
 };
 
 export default Home;
+
+const TopContainer = () => {
+    const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
+
+    const overlayToggleHandler = () => {
+        setQueueToggle((prev) => false);
+        console.log(1);
+    };
+    return (
+        <>
+            <Wrapper onClick={overlayToggleHandler}>
+                <RotateComponent>
+                    <Player />
+                    <Search />
+                </RotateComponent>
+            </Wrapper>
+
+            <QueueToggleBtn />
+        </>
+    );
+};
 
 const Wrapper = styled.div`
     position: relative;

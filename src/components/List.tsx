@@ -72,7 +72,7 @@ const Wrapper = styled.div<{ index: number; queueIndex: number }>`
     border-radius: 5px;
 
     :hover {
-        background: rgba(0, 0, 0, 0.65);
+        background: rgba(0, 0, 0, 0.85);
         cursor: pointer;
     }
 `;
