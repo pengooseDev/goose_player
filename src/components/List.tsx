@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { queueIndexAtom } from "../atom";
 import { useRecoilState } from "recoil";
+import DragHandle from "./DragHandle";
+import { Draggable } from "react-beautiful-dnd";
 
 interface infoProps {
     info: {
@@ -11,28 +13,43 @@ interface infoProps {
         duration: string;
         owner: string;
     };
+    index: number;
 }
 
-const List = ({ info }: infoProps) => {
+const List = ({ info, index }: infoProps) => {
     const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
-
     const { id, duration, owner, thumbnail, title } = info;
 
     const listClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         console.log(e.currentTarget.id);
         //id 찾아서 해당 인덱스 넘겨줘야함.
     };
+
     return (
-        <Wrapper onClick={listClickHandler} key={`li-${id}`} id={id}>
-            <Thumbnail thumbnail={thumbnail} />
-            <Info>
-                <Title>{title}</Title>
-                <SubInfo>
-                    <Duration>{duration}</Duration>
-                    <Owner>{owner}</Owner>
-                </SubInfo>
-            </Info>
-        </Wrapper>
+        <Draggable draggableId={info.id} index={index}>
+            {(provided) => (
+                <Wrapper
+                    onClick={listClickHandler}
+                    index={index}
+                    queueIndex={queueIndex}
+                    key={`li-${id}`}
+                    id={id}
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                >
+                    <DragHandle />
+                    <Thumbnail thumbnail={thumbnail} />
+                    <Info>
+                        <Title>{title}</Title>
+                        <SubInfo>
+                            <Duration>{duration}</Duration>
+                            <Owner>{owner}</Owner>
+                        </SubInfo>
+                    </Info>
+                </Wrapper>
+            )}
+        </Draggable>
     );
 };
 
@@ -42,9 +59,11 @@ interface ThumbnailProps {
     thumbnail: string;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ index: number; queueIndex: number }>`
     display: flex;
     color: #cbd5e1;
+    background: ${(props) =>
+        props.index == props.queueIndex ? "rgba(222,222,222,0.15)" : ""};
     justify-content: space-between;
     border-radius: 3px;
     padding: 10px;
@@ -62,7 +81,7 @@ const Info = styled.div`
     flex-direction: column;
     justify-content: space-between;
     background: transparent;
-    width: 250px;
+    width: 230px;
     border-radius: 3px;
     overflow-y: auto;
 `;

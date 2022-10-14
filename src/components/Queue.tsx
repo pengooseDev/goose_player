@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { queueIndexAtom, queueAtom, queueToggleAtom } from "../atom";
+import {
+    DragDropContext,
+    Draggable,
+    Droppable,
+    DropResult,
+} from "react-beautiful-dnd";
+import { queueAtom, queueToggleAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import List from "./List";
 import { motion } from "framer-motion";
@@ -36,20 +42,28 @@ const Queue = () => {
                                 <Title>Your Queue</Title>
                             </Header>
                             <QueueWrapper>
-                                <QueueList>
-                                    {Object.entries(queue).map(
-                                        ([v, info], i) => {
-                                            return (
-                                                <List
-                                                    key={`${
-                                                        Object(info).id
-                                                    }queue${i}`}
-                                                    info={Object(info)}
-                                                />
-                                            );
-                                        }
+                                <Droppable droppableId="queue">
+                                    {(provided) => (
+                                        <QueueList
+                                            {...provided.droppableProps}
+                                            ref={provided.innerRef}
+                                        >
+                                            {Object.entries(queue).map(
+                                                ([v, info], i) => {
+                                                    return (
+                                                        <List
+                                                            key={`${
+                                                                Object(info).id
+                                                            }queue${i}`}
+                                                            info={Object(info)}
+                                                            index={i}
+                                                        />
+                                                    );
+                                                }
+                                            )}
+                                        </QueueList>
                                     )}
-                                </QueueList>
+                                </Droppable>
                             </QueueWrapper>
                         </Wrapper>
                     </Container>
