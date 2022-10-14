@@ -18,7 +18,6 @@ const Home: NextPage = () => {
         <>
             <DragDropContext onDragStart={s} onDragEnd={e}>
                 <Wrapper>
-                    <Nav title={"Goose Player"} />
                     <RotateComponent>
                         <Player />
                         <Search />

@@ -28,8 +28,8 @@ const Queue = () => {
 
     return (
         <>
-            {queueToggle ? (
-                <AnimatePresence>
+            <AnimatePresence>
+                {queueToggle ? (
                     <Container
                         variants={wrapperVariants}
                         initial="from"
@@ -38,7 +38,6 @@ const Queue = () => {
                     >
                         <Wrapper>
                             <Header>
-                                {queueToggle ? <QueueToggleBtn /> : <>|</>}
                                 <Title>Your Queue</Title>
                             </Header>
                             <QueueWrapper>
@@ -68,8 +67,8 @@ const Queue = () => {
                             </QueueWrapper>
                         </Wrapper>
                     </Container>
-                </AnimatePresence>
-            ) : null}
+                ) : null}
+            </AnimatePresence>
         </>
     );
 };
@@ -92,18 +91,15 @@ const wrapperVariants = {
 };
 
 const Container = styled(motion.div)`
-    transition: ease-in-out;
-    display: flex;
-    justify-content: center;
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
+    transition: ease-in-out;
 `;
 
 const Wrapper = styled.div`
     background: rgb(30, 30, 30);
     backdrop-filter: blur(10px);
-    z-index: 5;
     display: flex;
     flex-direction: column;
     width: 450px;

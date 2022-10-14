@@ -70,7 +70,6 @@ const Wrapper = styled.div<{ index: number; queueIndex: number }>`
     height: 100px;
     transition: 0.1s ease-in-out;
     border-radius: 5px;
-    background: teal;
 
     :hover {
         background: rgba(0, 0, 0, 0.65);

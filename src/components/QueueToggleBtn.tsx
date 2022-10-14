@@ -49,7 +49,7 @@ const QueueToggleBtn = () => {
 export default QueueToggleBtn;
 
 const Wrapper = styled.div<{ queueToggle: boolean }>`
-    position: ${(props) => (props.queueToggle ? "" : "absolute")};
+    position: absolute;
     z-index: 3;
     top: 50%;
     left: 15px;
@@ -64,10 +64,8 @@ const Wrapper = styled.div<{ queueToggle: boolean }>`
     padding: 3px;
     font-weight: 600;
 
-    color: ${(props) =>
-        props.queueToggle ? "rgba(222, 222, 222, 1)" : "#111"};
-    background: ${(props) =>
-        props.queueToggle ? "rgb(30,30,30)" : "rgba(222, 222, 222, 1)"};
+    color: "#111";
+    background: rgba(222, 222, 222, 1);
     :hover {
         cursor: pointer;
     }
