@@ -70,6 +70,8 @@ const Wrapper = styled.div<{ index: number; queueIndex: number }>`
     height: 100px;
     transition: 0.1s ease-in-out;
     border-radius: 5px;
+    background: teal;
+
     :hover {
         background: rgba(0, 0, 0, 0.65);
         cursor: pointer;
@@ -79,9 +81,9 @@ const Wrapper = styled.div<{ index: number; queueIndex: number }>`
 const Info = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     background: transparent;
-    width: 230px;
+    width: 220px;
     border-radius: 3px;
     overflow-y: auto;
 `;
@@ -97,7 +99,7 @@ const Title = styled.div`
     font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 40px;
+    height: 38px;
     word-wrap: brek-word;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -116,6 +118,5 @@ const Thumbnail = styled.div<ThumbnailProps>`
     background: url(${(props) => props.thumbnail});
     background-size: contain;
     background-repeat: no-repeat;
-    border-radius: 5px;
     width: 150px;
 `;

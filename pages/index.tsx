@@ -2,23 +2,32 @@ import type { NextPage } from "next";
 import Player from "../src/components/Player";
 import Nav from "../src/components/Nav";
 import Search from "../src/components/search/Search";
-import { useRecoilState } from "recoil";
-import { searchToggleAtom, queueToggleAtom } from "../src/atom";
+import { DragDropContext } from "react-beautiful-dnd";
 import styled from "styled-components";
 import Queue from "../src/components/Queue";
 import QueueToggleBtn from "../src/components/QueueToggleBtn";
 
 const Home: NextPage = () => {
+    const s = () => {
+        console.log(1);
+    };
+    const e = () => {
+        console.log(2);
+    };
     return (
-        <Wrapper>
-            <Nav title={"Goose Player"} />
-            <RotateComponent>
-                <Player />
-                <Search />
+        <>
+            <DragDropContext onDragStart={s} onDragEnd={e}>
+                <Wrapper>
+                    <Nav title={"Goose Player"} />
+                    <RotateComponent>
+                        <Player />
+                        <Search />
+                    </RotateComponent>
+                    <QueueToggleBtn />
+                </Wrapper>
                 <Queue />
-            </RotateComponent>
-            <QueueToggleBtn />
-        </Wrapper>
+            </DragDropContext>
+        </>
     );
 };
 

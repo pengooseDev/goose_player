@@ -61,6 +61,7 @@ const Queue = () => {
                                                     );
                                                 }
                                             )}
+                                            {provided.placeholder}
                                         </QueueList>
                                     )}
                                 </Droppable>
@@ -92,17 +93,16 @@ const wrapperVariants = {
 
 const Container = styled(motion.div)`
     transition: ease-in-out;
-    position: absolute;
-    top: 20%;
     display: flex;
     justify-content: center;
-    z-index: 3;
+    position: fixed;
+    top: 0px;
+    left: 0px;
 `;
 
 const Wrapper = styled.div`
     background: rgb(30, 30, 30);
     backdrop-filter: blur(10px);
-    position: relative;
     z-index: 5;
     display: flex;
     flex-direction: column;
@@ -135,42 +135,4 @@ const QueueList = styled.div`
     grid-template-rows: repeat(1, minmax(0, 1fr));
     grid-auto-flow: row;
     padding-right: 10px;
-`;
-
-const Exit = () => {
-    const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
-
-    const queueToggleHandler = () => {
-        setQueueToggle((prev) => false);
-    };
-    return (
-        <ExitWrapper onClick={queueToggleHandler}>
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-            >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                />
-            </svg>
-        </ExitWrapper>
-    );
-};
-
-const ExitWrapper = styled.div`
-    width: 40px;
-    height: 40px;
-    font-weight: 600;
-    display: flex;
-    padding: 3px;
-    border-radius: 3px;
-    :hover {
-        cursor: pointer;
-    }
 `;
