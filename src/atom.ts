@@ -55,3 +55,9 @@ export const queueToggleAtom = atom<boolean>({
     key: `queueToggleAtom/${v1()}`,
     default: false,
 });
+
+/* Duration */
+export const durationAtom = atom<number>({
+    key: "durationAtom",
+    default: 0,
+});

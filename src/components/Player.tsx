@@ -5,10 +5,11 @@ import {
     queueIndexAtom,
     isPlayingAtom,
     loopAtom,
+    durationAtom,
 } from "../atom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Controller from "../../src/components/Controller";
 import defaultImg from "../assets/img/Pengoose.jpeg";
 import Image from "next/image";
@@ -18,6 +19,7 @@ const Player = () => {
     const [queue, setQueue] = useRecoilState(queueAtom);
     const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
+    const [duration, setDuration] = useRecoilState(durationAtom);
     const isLoop = useRecoilValue(loopAtom);
     const volume = useRecoilValue(volumeAtom);
     const playerRef = useRef(null);
@@ -31,21 +33,21 @@ const Player = () => {
 
     const queueData = Object.entries(queue).map(([v, info], i) => info.id);
 
+    const onStartHandler = () => {
+        console.log(playerRef);
+        if (!playerRef?.current) return;
+        //@ts-ignore
+        const refDuration = playerRef?.current.getDuration();
+        setDuration((prev) => refDuration);
+    };
+
     /* onEndedHandler */
     const onEndedHandler = () => {
-        if (isLoop) {
-            console.log("loop : ", isLoop);
-            console.log("isPlaying : ", isPlaying, "=> true");
-            return setIsPlaying((prev) => true);
-        }
-        console.log("!!!", isLoop);
         return next();
     };
 
     const next = () => {
-        //id로 한 번 확인하고 삭제된 노래일 경우 인덱스로 확인.
         if (queueIndex >= queueData.length - 1) {
-            console.log("loop");
             return setQueueIndex((prev) => 0);
         }
         return setQueueIndex((prev) => prev + 1);
@@ -55,13 +57,13 @@ const Player = () => {
         setIsPlaying((prev) => !prev);
     };
 
-    /*
-  Object.entries(queue)
-   */
+    const seekHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.currentTarget);
+    };
 
     return (
         <Wrapper>
-            <Right />
+            <Right queueData={queueData} />
             <Top />
             <Left />
             {hasWindow && queueData[queueIndex] ? (
@@ -76,9 +78,10 @@ const Player = () => {
                             controls={false}
                             loop={isLoop}
                             volume={volume}
+                            onStart={onStartHandler}
                             onEnded={onEndedHandler}
                         />
-                        <VideoRange />
+                        <VideoRange onChange={seekHandler} />
                     </PlayerWrapper>
                 </>
             ) : (
@@ -119,13 +122,14 @@ const Top = styled.div`
     background: black;
 `;
 
-const Right = styled.div`
+const Right = styled.div<{ queueData: string[] }>`
     position: absolute;
     margin-left: 685px;
-    margin-bottom: -160px;
+    margin-bottom: ${(props) =>
+        props.queueData.length === 0 ? "-145px" : "-160px"};
     transform: skew(-20deg) rotate(-20deg);
     box-shadow: 0px 0px 10px bisque;
-    height: 376px;
+    height: ${(props) => (props.queueData.length === 0 ? "362px" : "376px")};
     width: 5px;
     background: black;
 `;
@@ -139,7 +143,7 @@ const VideoRange = styled.input.attrs({ type: "range" })`
     margin-left: 0px; //이거 안하면 뒤틀림.
     height: 15px;
     width: 100%;
-    background: rgba(222, 222, 222, 1);
+    background: rgba(222, 222, 222, 0.6);
     :focus {
         outline: none;
     }
@@ -158,7 +162,7 @@ const VideoRange = styled.input.attrs({ type: "range" })`
         background: whitesmoke;
 
         cursor: pointer;
-        box-shadow: -100vw 0 0 100vw rgba(0, 0, 0, 0.65);
+        box-shadow: -100vw 0 0 100vw rgba(0, 0, 0, 0.75);
     }
 `;
 

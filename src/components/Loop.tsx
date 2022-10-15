@@ -35,9 +35,9 @@ export default Loop;
 const Wrapper = styled.div<{ isLoop: boolean }>`
     width: 50px;
     font-weight: 600;
-    color: ${(props) => (props.isLoop ? "rgba(222, 222, 222, 1)" : "#111")};
+    color: ${(props) => (props.isLoop ? "#111" : "rgba(222, 222, 222, 1)")};
     background: ${(props) =>
-        props.isLoop ? "#111" : "rgba(222, 222, 222, 1)"};
+        props.isLoop ? "rgba(222, 222, 222, 1)" : "#111"};
     padding: 10px;
     display: flex;
     align-items: center;
