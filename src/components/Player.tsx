@@ -62,19 +62,22 @@ const Player = () => {
     return (
         <Wrapper>
             {hasWindow && queueData[queueIndex] ? (
-                <PlayerWrapper>
-                    <PlayerOverlay onClick={playingToggle} />
-                    <ReactPlayer
-                        ref={playerRef}
-                        url={queueUrlTrimmer(queueData[queueIndex])}
-                        mute="false"
-                        playing={isPlaying}
-                        controls={false}
-                        loop={isLoop}
-                        volume={volume}
-                        onEnded={onEndedHandler}
-                    />
-                </PlayerWrapper>
+                <>
+                    <PlayerWrapper>
+                        <PlayerOverlay onClick={playingToggle} />
+                        <ReactPlayer
+                            ref={playerRef}
+                            url={queueUrlTrimmer(queueData[queueIndex])}
+                            mute="false"
+                            playing={isPlaying}
+                            controls={false}
+                            loop={isLoop}
+                            volume={volume}
+                            onEnded={onEndedHandler}
+                        />
+                        <VideoRange />
+                    </PlayerWrapper>
+                </>
             ) : (
                 <Monitor>
                     <Image
@@ -91,6 +94,40 @@ const Player = () => {
 };
 
 export default Player;
+
+const VideoRange = styled.input.attrs({ type: "range" })`
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    -webkit-appearance: none;
+
+    margin-left: 0px;
+    height: 15px;
+    width: 100%;
+    background: rgba(111, 111, 111, 0.6);
+    box-shadow: 0px 0px 5px rgba(222, 222, 222, 0.5);
+
+    :focus {
+        outline: none;
+    }
+
+    ::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    ::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 10px;
+        height: 100%;
+        background: whitesmoke;
+
+        cursor: pointer;
+        box-shadow: -100vw 0 0 100vw rgba(0, 0, 0, 0.65);
+    }
+`;
 
 const Monitor = styled.div`
     width: 640px;
@@ -116,5 +153,5 @@ const PlayerOverlay = styled.div`
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0);
-    box-shadow: 0px 0px 10px bisque;
+    box-shadow: 0px -5px 10px bisque;
 `;

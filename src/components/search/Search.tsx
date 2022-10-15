@@ -9,6 +9,9 @@ import Card from "../Card";
 import styled from "styled-components";
 import SearchBar from "../../components/search/SearchBar";
 import { AnimatePresence, motion } from "framer-motion";
+import loadingGIF from "../../assets/img/loading.gif";
+import React from "react";
+import Image from "next/image";
 
 const Search = () => {
     const [axiosData, setAxiosData] = useRecoilState(axiosAtom);
@@ -36,11 +39,16 @@ const Search = () => {
                             <Wrapper>
                                 <Title>
                                     <span>Search</span>
+
                                     <Exit />
                                 </Title>
                                 <SearchBar />
                                 {isLoading ? (
-                                    "Loading"
+                                    <Loading>
+                                        <LoadingGif>
+                                            <Image src={loadingGIF} />
+                                        </LoadingGif>
+                                    </Loading>
                                 ) : (
                                     <Cards>
                                         {axiosData.map((videoData, i) => {
@@ -63,6 +71,18 @@ const Search = () => {
 };
 
 export default Search;
+
+const LoadingGif = styled.div`
+    width: 250px;
+    height: 250px;
+`;
+
+const Loading = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+`;
 
 const Overlay = styled.div`
     position: fixed;
@@ -90,6 +110,8 @@ const Container = styled(motion.div)`
     top: 20%;
     display: flex;
     justify-content: center;
+    transition: 0.2s ease-in-out;
+    min-height: 400px;
 `;
 
 const Wrapper = styled(motion.div)`
