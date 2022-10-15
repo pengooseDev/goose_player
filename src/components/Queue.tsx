@@ -36,13 +36,33 @@ const Queue = () => {
             //위치에 추가.
         });
 
-        //재생 중인 곡을 옮길 때 queueIndex유지.
+        /* queueIndex Algorithm */
+        //재생 중인 곡을 옮길 때, queueIndex유지.
         if (source.index === queueIndex) {
             setQueueIndex((prev) => destination.index);
         }
-        //재생 중이지 않은 곡을 현재 재생중인 queueIndex로 옮길 때 유지.
+
+        //재생 중인 queueIndex가 des인 경우.
         if (destination.index === queueIndex) {
-            setQueueIndex((prev) => source.index);
+            if (source.index > queueIndex) {
+                return setQueueIndex((prev) => prev + 1);
+            }
+
+            if (source.index < queueIndex) {
+                return setQueueIndex((prev) => prev - 1);
+            }
+        }
+
+        if (destination.index !== queueIndex) {
+            if (source.index < queueIndex) {
+                if (destination.index < queueIndex) return;
+                return setQueueIndex((prev) => prev - 1);
+            }
+
+            if (source.index > queueIndex) {
+                if (destination.index > queueIndex) return;
+                return setQueueIndex((prev) => prev + 1);
+            }
         }
     };
     return (
