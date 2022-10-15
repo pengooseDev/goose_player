@@ -23,7 +23,6 @@ const TopContainer = () => {
 
     const overlayToggleHandler = () => {
         setQueueToggle((prev) => false);
-        console.log(1);
     };
     return (
         <>
