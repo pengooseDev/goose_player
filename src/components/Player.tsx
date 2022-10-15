@@ -6,6 +6,7 @@ import {
     isPlayingAtom,
     loopAtom,
     durationAtom,
+    currentTimeAtom,
 } from "../atom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
@@ -20,6 +21,7 @@ const Player = () => {
     const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
     const [duration, setDuration] = useRecoilState(durationAtom);
+    const [currentTime, setCurrentTime] = useRecoilState(currentTimeAtom);
     const isLoop = useRecoilValue(loopAtom);
     const volume = useRecoilValue(volumeAtom);
     const playerRef = useRef(null);
@@ -41,6 +43,13 @@ const Player = () => {
         setDuration((prev) => refDuration);
     };
 
+    const seekHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!playerRef?.current) return;
+        const targetTime = e.currentTarget.value;
+        //@ts-ignore
+        playerRef.current.seekTo(targetTime);
+    };
+
     /* onEndedHandler */
     const onEndedHandler = () => {
         return next();
@@ -55,10 +64,6 @@ const Player = () => {
 
     const playingToggle = () => {
         setIsPlaying((prev) => !prev);
-    };
-
-    const seekHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.currentTarget);
     };
 
     return (
@@ -81,7 +86,7 @@ const Player = () => {
                             onStart={onStartHandler}
                             onEnded={onEndedHandler}
                         />
-                        <VideoRange onChange={seekHandler} />
+                        <VideoRange onChange={seekHandler} max={duration} />
                     </PlayerWrapper>
                 </>
             ) : (

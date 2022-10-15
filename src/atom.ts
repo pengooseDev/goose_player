@@ -61,3 +61,9 @@ export const durationAtom = atom<number>({
     key: "durationAtom",
     default: 0,
 });
+
+/* CurrentTime */
+export const currentTimeAtom = atom<number>({
+    key: "currentTimeAtom",
+    default: 0,
+});
