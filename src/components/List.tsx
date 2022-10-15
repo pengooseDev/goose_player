@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { queueIndexAtom } from "../atom";
+import { queueAtom, queueIndexAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import DragHandle from "./DragHandle";
 import { Draggable } from "react-beautiful-dnd";
@@ -17,12 +17,15 @@ interface infoProps {
 }
 
 const List = ({ info, index }: infoProps) => {
+    const [queue, setQueue] = useRecoilState(queueAtom);
     const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
     const { id, duration, owner, thumbnail, title } = info;
 
     const listClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        console.log(e.currentTarget.id);
+        const targetId = e.currentTarget.id;
         //id 찾아서 해당 인덱스 넘겨줘야함.
+        const targetIndex = queue.map((i) => i.id === targetId).indexOf(true);
+        setQueueIndex((prev) => targetIndex);
     };
 
     return (
