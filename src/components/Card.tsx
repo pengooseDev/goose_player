@@ -1,21 +1,23 @@
 import styled from "styled-components";
-import { queueAtom } from "../atom";
+import { queueAtom, queueIndexAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import { Video } from "../types";
 
 const Card = ({ data }: { data: Video }) => {
     const { title, id, thumbnail, duration, owner } = data;
     const [queue, setQueue] = useRecoilState(queueAtom);
+    const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
 
     const isDuplicate = Boolean(queue.filter((i) => i.id === id).length);
 
     const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         //id가 이미 queue에 존재한다면 except.
         if (isDuplicate) return;
-
         setQueue((prev) => {
             return [...prev, data];
         });
+
+        setQueueIndex((prev) => queueIndex);
     };
 
     return (
