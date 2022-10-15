@@ -61,6 +61,9 @@ const Player = () => {
 
     return (
         <Wrapper>
+            <Right />
+            <Top />
+            <Left />
             {hasWindow && queueData[queueIndex] ? (
                 <>
                     <PlayerWrapper>
@@ -95,6 +98,38 @@ const Player = () => {
 
 export default Player;
 
+const Left = styled.div`
+    position: absolute;
+    margin-left: -668px;
+    margin-bottom: 624px;
+    transform: skew(20deg) rotate(70deg);
+    height: 8px;
+    width: 8px;
+    background: black;
+`;
+
+const Top = styled.div`
+    position: absolute;
+    margin-left: 10px;
+    margin-bottom: 410px;
+    transform: skew(70deg) rotate(70deg);
+    box-shadow: 0px -10px 10px bisque;
+    height: 15px;
+    width: 233px;
+    background: black;
+`;
+
+const Right = styled.div`
+    position: absolute;
+    margin-left: 685px;
+    margin-bottom: -147px;
+    transform: skew(-20deg) rotate(-20deg);
+
+    box-shadow: 0px 0px 10px bisque;
+    height: 360px;
+    width: 5px;
+    background: black;
+`;
 const VideoRange = styled.input.attrs({ type: "range" })`
     position: absolute;
     z-index: 10;
@@ -153,5 +188,4 @@ const PlayerOverlay = styled.div`
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0);
-    box-shadow: 0px -5px 10px bisque;
 `;
