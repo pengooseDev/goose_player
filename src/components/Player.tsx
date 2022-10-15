@@ -122,26 +122,24 @@ const Top = styled.div`
 const Right = styled.div`
     position: absolute;
     margin-left: 685px;
-    margin-bottom: -147px;
+    margin-bottom: -160px;
     transform: skew(-20deg) rotate(-20deg);
-
     box-shadow: 0px 0px 10px bisque;
-    height: 360px;
+    height: 376px;
     width: 5px;
     background: black;
 `;
+
 const VideoRange = styled.input.attrs({ type: "range" })`
     position: absolute;
     z-index: 10;
     overflow: hidden;
     -webkit-appearance: none;
-
-    margin-left: 0px;
+    margin-top: -1px;
+    margin-left: 0px; //이거 안하면 뒤틀림.
     height: 15px;
     width: 100%;
-    background: rgba(111, 111, 111, 0.6);
-    box-shadow: 0px 0px 5px rgba(222, 222, 222, 0.5);
-
+    background: rgba(222, 222, 222, 1);
     :focus {
         outline: none;
     }
