@@ -45,9 +45,17 @@ const Player = () => {
 
     const seekHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!playerRef?.current) return;
-        const targetTime = e.currentTarget.value;
+        const targetTime = Number(e.currentTarget.value);
+        setCurrentTime(targetTime);
         //@ts-ignore
         playerRef.current.seekTo(targetTime);
+    };
+
+    const onProgressHandler = () => {
+        if (!playerRef?.current) return;
+        //@ts-ignore
+        const refCurrentTime = playerRef.current.getCurrentTime();
+        setCurrentTime(refCurrentTime);
     };
 
     /* onEndedHandler */
@@ -85,8 +93,13 @@ const Player = () => {
                             volume={volume}
                             onStart={onStartHandler}
                             onEnded={onEndedHandler}
+                            onProgress={onProgressHandler}
                         />
-                        <VideoRange onChange={seekHandler} max={duration} />
+                        <VideoRange
+                            onChange={seekHandler}
+                            max={duration}
+                            value={currentTime}
+                        />
                     </PlayerWrapper>
                 </>
             ) : (
