@@ -1,11 +1,33 @@
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { queueAtom, queueIndexAtom } from "../atom";
+import React from "react";
 
-const Delete = () => {
-    const deleteHandler = () => {
-        console.log(1);
+const Delete = ({ id }: { id: string }) => {
+    const [queue, setQueue] = useRecoilState(queueAtom);
+    const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
+
+    const deleteHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+        const targetId = e.currentTarget.id;
+        const targetIndex = queue.map((i) => i.id === targetId).indexOf(true);
+
+        if (targetIndex === queueIndex) {
+            setQueueIndex((prev) => {
+                if (prev === 0) {
+                    return prev;
+                }
+                return prev - 1;
+            });
+        }
+
+        setQueue((prev) => {
+            const newArray = [...prev];
+            newArray.splice(targetIndex, 1);
+            return newArray;
+        });
     };
     return (
-        <Wrapper onClick={deleteHandler}>
+        <Wrapper onClick={deleteHandler} id={id}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

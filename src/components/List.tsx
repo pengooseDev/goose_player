@@ -52,7 +52,7 @@ const List = ({ info, index }: infoProps) => {
                             </SubInfo>
                         </Info>
                     </Content>
-                    <Delete />
+                    <Delete id={id} />
                 </Wrapper>
             )}
         </Draggable>
