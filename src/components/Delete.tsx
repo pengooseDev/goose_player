@@ -28,6 +28,13 @@ export default Delete;
 
 const Wrapper = styled.div`
     border-radius: 0px 3px 3px 0px;
-    width: 30px;
-    background: teal;
+    width: 25px;
+    margin: -10px 0px -10px 0px;
+    display: flex;
+    padding: 3px;
+    transition: 0.2s ease-in-out;
+    :hover {
+        background: tomato;
+        color: #111;
+    }
 `;

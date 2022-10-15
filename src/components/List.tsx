@@ -4,6 +4,7 @@ import { queueAtom, queueIndexAtom } from "../atom";
 import { useRecoilState } from "recoil";
 import DragHandle from "./DragHandle";
 import { Draggable } from "react-beautiful-dnd";
+import Delete from "./Delete";
 
 interface infoProps {
     info: {
@@ -32,7 +33,6 @@ const List = ({ info, index }: infoProps) => {
         <Draggable draggableId={info.id} index={index}>
             {(provided) => (
                 <Wrapper
-                    onClick={listClickHandler}
                     index={index}
                     queueIndex={queueIndex}
                     key={`li-${id}`}
@@ -41,15 +41,18 @@ const List = ({ info, index }: infoProps) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <DragHandle />
-                    <Thumbnail thumbnail={thumbnail} />
-                    <Info>
-                        <Title>{title}</Title>
-                        <SubInfo>
-                            <Duration>{duration}</Duration>
-                            <Owner>{owner}</Owner>
-                        </SubInfo>
-                    </Info>
+                    <Content onClick={listClickHandler} id={id}>
+                        <DragHandle />
+                        <Thumbnail thumbnail={thumbnail} />
+                        <Info>
+                            <Title>{title}</Title>
+                            <SubInfo>
+                                <Duration>{duration}</Duration>
+                                <Owner>{owner}</Owner>
+                            </SubInfo>
+                        </Info>
+                    </Content>
+                    <Delete />
                 </Wrapper>
             )}
         </Draggable>
@@ -62,14 +65,18 @@ interface ThumbnailProps {
     thumbnail: string;
 }
 
+const Content = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 const Wrapper = styled.div<{ index: number; queueIndex: number }>`
     display: flex;
+    justify-content: space-between;
     color: #cbd5e1;
     background: ${(props) =>
         props.index == props.queueIndex ? "rgba(222,222,222,0.15)" : ""};
-    justify-content: space-between;
-    border-radius: 3px;
-    padding: 10px;
+    padding: 10px 0px 10px 10px;
     height: 100px;
     transition: 0.1s ease-in-out;
     border-radius: 5px;
@@ -85,9 +92,10 @@ const Info = styled.div`
     flex-direction: column;
     justify-content: center;
     background: transparent;
-    width: 220px;
+    width: 190px;
     border-radius: 3px;
     overflow-y: auto;
+    margin-right: 10px;
 `;
 
 const SubInfo = styled.div`
