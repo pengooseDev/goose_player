@@ -5,9 +5,21 @@ import styled from "styled-components";
 import Queue from "../src/components/Queue";
 import QueueToggleBtn from "../src/components/QueueToggleBtn";
 import { useRecoilState } from "recoil";
-import { queueToggleAtom } from "../src/atom";
+import { useEffect } from "react";
+import { queueToggleAtom, useSsrComplectedState, queueAtom } from "../src/atom";
 
 const Home: NextPage = () => {
+    const [queue, setQueueData] = useRecoilState(queueAtom);
+    useEffect(() => {
+        const value = localStorage.getItem("persistQueueAtom");
+        const queueData = !!value ? JSON.parse(value) : undefined;
+        if (!queueData) return;
+        const newData = Object.entries(queueData).map((v, i) => v[1]);
+
+        //@ts-ignore;
+        setQueueData((prev) => newData[0]);
+    }, []);
+
     return (
         <>
             <TopContainer />
@@ -24,6 +36,11 @@ const TopContainer = () => {
     const overlayToggleHandler = () => {
         setQueueToggle((prev) => false);
     };
+
+    /* RecoilPersist SSR */
+    const setSsrCompleted = useSsrComplectedState();
+    useEffect(setSsrCompleted, [setSsrCompleted]);
+
     return (
         <>
             <Wrapper onClick={overlayToggleHandler}>

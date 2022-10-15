@@ -36,7 +36,6 @@ const Player = () => {
     const queueData = Object.entries(queue).map(([v, info], i) => info.id);
 
     const onStartHandler = () => {
-        console.log(playerRef);
         if (!playerRef?.current) return;
         //@ts-ignore
         const refDuration = playerRef?.current.getDuration();

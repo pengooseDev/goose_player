@@ -1,6 +1,7 @@
-import { atom } from "recoil";
+import { atom, useSetRecoilState, AtomEffect } from "recoil";
 import { v1 } from "uuid";
 import { Video } from "./types";
+import { recoilPersist } from "recoil-persist";
 
 /* Axios Atom */
 export const axiosAtom = atom<Video[]>({
@@ -15,9 +16,21 @@ export const loadingAtom = atom<boolean>({
 });
 
 /* queueAtom */
+
+const persistQueueAtom = recoilPersist({
+    key: "persistQueueAtom",
+}).persistAtom;
+
+export const persistQueueAtomEffect = <T>(
+    param: Parameters<AtomEffect<T>>[0]
+) => {
+    param.getPromise(ssrCompletedState).then(() => persistQueueAtom(param));
+};
+
 export const queueAtom = atom<Video[]>({
-    key: `queueAtom/${v1()}`,
+    key: `queueAtom`,
     default: [],
+    effects_UNSTABLE: [persistQueueAtomEffect],
 });
 
 /* searchToggleAtom */
@@ -67,3 +80,14 @@ export const currentTimeAtom = atom<number>({
     key: "currentTimeAtom",
     default: 0,
 });
+
+/* RecoilPersist SSR */
+export const ssrCompletedState = atom({
+    key: "SsrCompleted",
+    default: false,
+});
+
+export const useSsrComplectedState = () => {
+    const setSsrCompleted = useSetRecoilState(ssrCompletedState);
+    return () => setSsrCompleted(true);
+};

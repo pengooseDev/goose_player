@@ -20,6 +20,7 @@
         "react-dom": "18.2.0",
         "react-player": "^2.11.0",
         "recoil": "^0.7.5",
+        "recoil-persist": "^4.2.0",
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
