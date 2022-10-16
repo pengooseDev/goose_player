@@ -52,7 +52,7 @@ const Wrapper = styled.div`
 
     div {
         margin-right: 5px;
-        box-shadow: 0px 0px 5px rgba(222, 222, 222, 0.5);
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     }
 `;
 
