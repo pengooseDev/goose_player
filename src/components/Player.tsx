@@ -7,6 +7,7 @@ import {
     loopAtom,
     durationAtom,
     currentTimeAtom,
+    ssrCompletedState,
 } from "../atom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
@@ -15,6 +16,7 @@ import Controller from "../../src/components/Controller";
 import defaultImg from "../assets/img/Pengoose.jpeg";
 import Image from "next/image";
 import { queueUrlTrimmer } from "../../pages/api/controller/urlTrimmer";
+import Speaker from "./Speaker";
 
 const Player = () => {
     const [queue, setQueue] = useRecoilState(queueAtom);
@@ -73,11 +75,32 @@ const Player = () => {
         setIsPlaying((prev) => !prev);
     };
 
+    const currentTimeHours = Math.floor(currentTime / 3600);
+    const currentTimeMinutes = Math.floor(currentTime / 60);
+    const currentTimeSeconds = Math.floor(currentTime % 60);
+    const durationHours = Math.floor(duration / 3600);
+    const durationMinutes = Math.floor(duration / 60);
+    const durationSeconds = Math.floor(duration % 60);
+
     return (
         <Wrapper>
+            <DurationInfo>
+                {durationHours === 0
+                    ? null
+                    : currentTimeHours >= 10
+                    ? currentTimeHours
+                    : `0${currentTimeHours}`}
+                {durationHours === 0 ? null : ":"}
+                {currentTimeMinutes >= 10
+                    ? currentTimeMinutes
+                    : `0${currentTimeHours}`}
+                :{currentTimeSeconds} /{durationHours}:{durationMinutes}:
+                {durationSeconds}
+            </DurationInfo>
             <Right queueData={queueData} />
             <Top />
             <Left />
+            <Speaker />
             {hasWindow && queueData[queueIndex] ? (
                 <>
                     <PlayerWrapper>
@@ -117,6 +140,16 @@ const Player = () => {
 };
 
 export default Player;
+
+const DurationInfo = styled.div`
+    transform: skew(20deg) rotate(20deg);
+    position: absolute;
+    top: 130px;
+    right: 350px;
+    width: 100px;
+    height: 100px;
+    background: teal;
+`;
 
 const Left = styled.div`
     position: absolute;

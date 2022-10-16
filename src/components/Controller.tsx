@@ -16,6 +16,7 @@ const Controller = () => {
 
     return (
         <Wrapper>
+            <Right />
             {mount && (
                 <>
                     <Pause />
@@ -29,8 +30,13 @@ const Controller = () => {
     );
 };
 
+const Right = styled.div`
+    background: teal;
+`;
+
 const Wrapper = styled.div`
     position: relative;
+    top: 10px;
     right: 20px;
 
     display: flex;
