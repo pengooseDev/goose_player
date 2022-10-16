@@ -21,15 +21,15 @@ const Search = () => {
 
     const overlayToggleHandler = () => {
         setSearchToggle((prev) => false);
-        setQueueToggle((prev) => false);
     };
 
     return (
         <>
-            {searchToggle ? (
-                <>
-                    <Overlay onClick={overlayToggleHandler}></Overlay>
-                    <AnimatePresence>
+            <AnimatePresence>
+                {searchToggle ? (
+                    <>
+                        <Overlay onClick={overlayToggleHandler}></Overlay>
+
                         <Container
                             variants={containerVar}
                             initial="from"
@@ -63,9 +63,9 @@ const Search = () => {
                                 )}
                             </Wrapper>
                         </Container>
-                    </AnimatePresence>
-                </>
-            ) : null}
+                    </>
+                ) : null}
+            </AnimatePresence>
         </>
     );
 };
@@ -96,12 +96,18 @@ const Overlay = styled.div`
 const containerVar = {
     from: {
         opacity: 0,
+        scale: 0,
+        transition: { duration: 0 },
     },
     to: {
         opacity: 1,
+        scale: 1,
+        transition: { duration: 0 },
     },
     exit: {
         opacity: 0,
+        scale: 0,
+        transition: { duration: 0.1 },
     },
 };
 
