@@ -4,14 +4,27 @@ import Loop from "./Loop";
 import Pause from "./Pause";
 import Volume from "./Volume";
 import IconSearch from "./search/IconSearch";
+import { useEffect, useState } from "react";
+
 const Controller = () => {
+    const [mount, setMount] = useState(false);
+    useEffect(() => {
+        if (typeof window !== undefined) {
+            setMount((prev) => true);
+        }
+    }, []);
+
     return (
         <Wrapper>
-            <Pause />
-            <NextBtn />
-            <Loop />
-            <IconSearch />
-            <Volume />
+            {mount && (
+                <>
+                    <Pause />
+                    <NextBtn />
+                    <Loop />
+                    <IconSearch />
+                    <Volume />
+                </>
+            )}
         </Wrapper>
     );
 };
