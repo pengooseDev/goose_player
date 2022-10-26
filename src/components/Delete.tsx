@@ -11,7 +11,7 @@ const Delete = ({ id }: { id: string }) => {
         const targetId = e.currentTarget.id;
         const targetIndex = queue.map((i) => i.id === targetId).indexOf(true);
 
-        if (targetIndex === queueIndex) {
+        if (targetIndex <= queueIndex) {
             setQueueIndex((prev) => {
                 if (prev === 0) {
                     return prev;
