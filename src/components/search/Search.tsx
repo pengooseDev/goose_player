@@ -39,6 +39,7 @@ const Search = () => {
               <Wrapper>
                 <Title>
                   <span>Search</span>
+
                   <Exit />
                 </Title>
                 <SearchBar />
@@ -80,7 +81,7 @@ const Loading = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 600px;
+  height: 100%;
 `;
 
 const Overlay = styled.div`
