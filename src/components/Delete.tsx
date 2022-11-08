@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { queueAtom, queueIndexAtom } from "../atom";
-import React from "react";
+import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import { queueAtom, queueIndexAtom } from '../atom';
+import React from 'react';
 
 const Delete = ({ id }: { id: string }) => {
   const [queue, setQueue] = useRecoilState(queueAtom);

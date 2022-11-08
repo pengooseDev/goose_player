@@ -1,4 +1,4 @@
-import ReactPlayer from "react-player";
+import ReactPlayer from 'react-player';
 import {
   volumeAtom,
   queueAtom,
@@ -7,16 +7,16 @@ import {
   loopAtom,
   durationAtom,
   currentTimeAtom,
-} from "../atom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import styled from "styled-components";
-import React, { useEffect, useState, useRef } from "react";
-import Controller from "../../src/components/Controller";
-import defaultImg from "../assets/img/Pengoose.jpeg";
-import Image from "next/image";
-import { queueUrlTrimmer } from "../../pages/api/controller/urlTrimmer";
-import Speaker from "./Speaker";
-import DurationInfo from "./DurationInfo";
+} from '../atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import styled from 'styled-components';
+import React, { useEffect, useState, useRef } from 'react';
+import Controller from '../../src/components/Controller';
+import defaultImg from '../assets/img/Pengoose.jpeg';
+import Image from 'next/image';
+import { queueUrlTrimmer } from '../../pages/api/controller/urlTrimmer';
+import Speaker from './Speaker';
+import DurationInfo from './DurationInfo';
 
 const Player = () => {
   const [queue, setQueue] = useRecoilState(queueAtom);
@@ -30,7 +30,7 @@ const Player = () => {
 
   const [hasWindow, setHasWindow] = useState(false);
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       setHasWindow(true);
     }
   }, []);
@@ -147,15 +147,15 @@ const Right = styled.div<{ queueData: string[] }>`
   position: absolute;
   margin-left: 685px;
   margin-bottom: ${(props) =>
-    props.queueData.length === 0 ? "-145px" : "-160px"};
+    props.queueData.length === 0 ? '-145px' : '-160px'};
   transform: skew(-20deg) rotate(-20deg);
   box-shadow: 0px 0px 10px bisque;
-  height: ${(props) => (props.queueData.length === 0 ? "362px" : "376px")};
+  height: ${(props) => (props.queueData.length === 0 ? '362px' : '376px')};
   width: 5px;
   background: black;
 `;
 
-const VideoRange = styled.input.attrs({ type: "range" })`
+const VideoRange = styled.input.attrs({ type: 'range' })`
   position: absolute;
   z-index: 10;
   overflow: hidden;

@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import { queueAtom, queueIndexAtom } from "../atom";
-import { useRecoilState } from "recoil";
-import DragHandle from "./DragHandle";
-import { Draggable } from "react-beautiful-dnd";
-import Delete from "./Delete";
+import React from 'react';
+import styled from 'styled-components';
+import { queueAtom, queueIndexAtom } from '../atom';
+import { useRecoilState } from 'recoil';
+import DragHandle from './DragHandle';
+import { Draggable } from 'react-beautiful-dnd';
+import Delete from './Delete';
 
 interface infoProps {
   info: {
@@ -75,7 +75,7 @@ const Wrapper = styled.div<{ index: number; queueIndex: number }>`
   justify-content: space-between;
   color: #cbd5e1;
   background: ${(props) =>
-    props.index == props.queueIndex ? "rgba(222,222,222,0.15)" : ""};
+    props.index == props.queueIndex ? 'rgba(222,222,222,0.15)' : ''};
   padding: 10px 0px 10px 10px;
   height: 100px;
   transition: 0.1s ease-in-out;

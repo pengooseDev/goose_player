@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import NextBtn from "./Next";
-import Loop from "./Loop";
-import Pause from "./Pause";
-import Volume from "./Volume";
-import IconSearch from "./search/IconSearch";
-import { useEffect, useState } from "react";
+import styled from 'styled-components';
+import NextBtn from './Next';
+import Loop from './Loop';
+import Pause from './Pause';
+import Volume from './Volume';
+import IconSearch from './search/IconSearch';
+import { useEffect, useState } from 'react';
 
 const Controller = () => {
   const [mount, setMount] = useState(false);

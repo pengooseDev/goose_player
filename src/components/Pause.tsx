@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { isPlayingAtom } from "../../src/atom";
+import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import { isPlayingAtom } from '../../src/atom';
 
 const Pause = () => {
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
@@ -52,9 +52,9 @@ export default Pause;
 const Wrapper = styled.div<{ isPlaying: boolean }>`
   width: 50px;
   font-weight: 600;
-  color: ${(props) => (props.isPlaying ? "rgba(222, 222, 222, 1)" : "#111")};
+  color: ${(props) => (props.isPlaying ? 'rgba(222, 222, 222, 1)' : '#111')};
   background: ${(props) =>
-    props.isPlaying ? "#111" : "rgba(222, 222, 222, 1)"};
+    props.isPlaying ? '#111' : 'rgba(222, 222, 222, 1)'};
   padding: 10px;
   display: flex;
   align-items: center;

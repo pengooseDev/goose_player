@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { queueAtom, queueIndexAtom } from "../atom";
-import { useRecoilState } from "recoil";
-import { Video } from "../types";
-import Checked from "./Checked";
-import { AnimatePresence, motion } from "framer-motion";
+import styled from 'styled-components';
+import { queueAtom, queueIndexAtom } from '../atom';
+import { useRecoilState } from 'recoil';
+import { Video } from '../types';
+import Checked from './Checked';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Card = ({ data }: { data: Video }) => {
   const { title, id, thumbnail, duration, owner } = data;
@@ -14,7 +14,6 @@ const Card = ({ data }: { data: Video }) => {
 
   const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isDuplicate) {
-      //이미 있는 경우 삭제.
       setQueue((prev) => {
         const newArray = [...prev];
         const targetIndex = queue.map((i) => i.id === id).indexOf(true);
@@ -102,8 +101,8 @@ const Wrapper = styled.div<{ id: string; isDuplicate: boolean }>`
   justify-content: space-between;
   background: ${(props) =>
     props.isDuplicate
-      ? "rgba(255, 255, 255, 0.2)"
-      : "rgba(255, 255, 255, 0.2)"};
+      ? 'rgba(255, 255, 255, 0.2)'
+      : 'rgba(255, 255, 255, 0.2)'};
   border-radius: 3px;
   padding: 10px;
   height: 8rem;

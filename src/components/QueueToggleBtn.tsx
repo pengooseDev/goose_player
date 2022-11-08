@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { queueToggleAtom } from "../atom";
-import { useEffect, useState } from "react";
+import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import { queueToggleAtom } from '../atom';
+import { useEffect, useState } from 'react';
 
 const QueueToggleBtn = () => {
   const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
@@ -76,7 +76,7 @@ const Wrapper = styled.div<{ queueToggle: boolean }>`
   padding: 3px;
   font-weight: 600;
 
-  color: "#111";
+  color: '#111';
   background: rgba(222, 222, 222, 1);
   :hover {
     cursor: pointer;

@@ -1,5 +1,5 @@
-import Head from "next/head";
-import titleIcon from "../src/assets/img/Pengoose.jpeg";
+import Head from 'next/head';
+import titleIcon from '../src/assets/img/Pengoose.jpeg';
 
 const Header = () => {
   return (

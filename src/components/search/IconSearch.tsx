@@ -1,6 +1,6 @@
-import { useRecoilState } from "recoil";
-import styled from "styled-components";
-import { searchToggleAtom } from "../../atom";
+import { useRecoilState } from 'recoil';
+import styled from 'styled-components';
+import { searchToggleAtom } from '../../atom';
 
 const IconSearch = () => {
   const [toggleState, setToggleState] = useRecoilState(searchToggleAtom);
@@ -33,9 +33,9 @@ export default IconSearch;
 const Wrapper = styled.div<{ toggleState: boolean }>`
   width: 50px;
   font-weight: 600;
-  color: ${(props) => (props.toggleState ? "#111" : "rgba(222, 222, 222, 1)")};
+  color: ${(props) => (props.toggleState ? '#111' : 'rgba(222, 222, 222, 1)')};
   background: ${(props) =>
-    props.toggleState ? "rgba(110, 110, 110, 1)" : "#111"};
+    props.toggleState ? 'rgba(110, 110, 110, 1)' : '#111'};
   padding: 10px;
   display: flex;
   align-items: center;

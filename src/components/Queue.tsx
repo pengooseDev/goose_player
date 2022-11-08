@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { Droppable, DropResult, DragDropContext } from "react-beautiful-dnd";
-import { queueAtom, queueIndexAtom, queueToggleAtom } from "../atom";
-import { useRecoilState } from "recoil";
-import List from "./List";
-import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
+import styled from 'styled-components';
+import { Droppable, DropResult, DragDropContext } from 'react-beautiful-dnd';
+import { queueAtom, queueIndexAtom, queueToggleAtom } from '../atom';
+import { useRecoilState } from 'recoil';
+import List from './List';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 interface Info {
   id: string;
@@ -120,7 +120,7 @@ const wrapperVariants = {
   to: {
     left: 0,
     opacity: 1,
-    transition: { type: "linear", duration: 0.15 },
+    transition: { type: 'linear', duration: 0.15 },
   },
   exit: { left: -360, opacity: 0, transition: { duration: 0.15 } },
 };

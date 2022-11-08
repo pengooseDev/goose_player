@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { durationAtom, currentTimeAtom } from "../atom";
-import { useRecoilState } from "recoil";
+import styled from 'styled-components';
+import { durationAtom, currentTimeAtom } from '../atom';
+import { useRecoilState } from 'recoil';
 
 const DurationInfo = () => {
   const [duration, setDuration] = useRecoilState(durationAtom);
@@ -22,7 +22,7 @@ const DurationInfo = () => {
           : durationHours >= 10
           ? `0${currentTimeHours}`
           : currentTimeHours}
-        {durationHours === 0 ? null : ":"}
+        {durationHours === 0 ? null : ':'}
         {durationMinutes === 0
           ? null
           : currentTimeMinutes >= 10
@@ -32,7 +32,7 @@ const DurationInfo = () => {
           : durationMinutes >= 10
           ? `0${currentTimeMinutes}`
           : currentTimeMinutes}
-        {durationMinutes === 0 ? null : ":"}
+        {durationMinutes === 0 ? null : ':'}
         {durationSeconds === 0
           ? null
           : currentTimeSeconds >= 10
@@ -49,7 +49,7 @@ const DurationInfo = () => {
           : durationHours >= 10
           ? `0${durationHours}`
           : durationHours}
-        {durationHours === 0 ? null : ":"}
+        {durationHours === 0 ? null : ':'}
         {durationMinutes === 0
           ? null
           : durationMinutes >= 10
@@ -59,7 +59,7 @@ const DurationInfo = () => {
           : durationMinutes >= 10
           ? `0${durationMinutes}`
           : durationMinutes}
-        {durationMinutes === 0 ? null : ":"}
+        {durationMinutes === 0 ? null : ':'}
         {durationSeconds === 0
           ? null
           : durationSeconds >= 10

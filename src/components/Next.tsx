@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { searchToggleAtom, queueAtom, queueIndexAtom } from "../atom";
+import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import { searchToggleAtom, queueAtom, queueIndexAtom } from '../atom';
 
 const NextBtn = () => {
   const [queue, setQueue] = useRecoilState(queueAtom);

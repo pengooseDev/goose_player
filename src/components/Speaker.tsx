@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Speaker = () => {
   return (
     <>
       <Wrapper>
-        <Bar bgColor={"#2a2a2a"}>
+        <Bar bgColor={'#2a2a2a'}>
           <Top />
           <Right />
           <Circle />
@@ -13,7 +13,7 @@ const Speaker = () => {
           <Circle />
           <Overlay />
         </Bar>
-        <Bar bgColor={"#2a2a2a"}>
+        <Bar bgColor={'#2a2a2a'}>
           <Top />
           <Right />
           <Circle />

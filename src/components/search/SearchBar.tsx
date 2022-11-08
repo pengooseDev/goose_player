@@ -1,12 +1,12 @@
-import axios from "axios";
-import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { axiosAtom, loadingAtom } from "../../atom";
-import { API_URL_SEARCH } from "../../../pages/api/controller/urlTrimmer";
-import styled from "styled-components";
+import axios from 'axios';
+import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { axiosAtom, loadingAtom } from '../../atom';
+import { API_URL_SEARCH } from '../../../pages/api/controller/urlTrimmer';
+import styled from 'styled-components';
 
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const [axiosData, setAxiosData] = useRecoilState(axiosAtom);
   const [isLoading, setLoading] = useRecoilState(loadingAtom);
 
@@ -24,7 +24,7 @@ const SearchBar = () => {
       setAxiosData((prev) => result);
       setLoading((prev) => !prev);
     } catch (err) {
-      console.log("ERR!", err);
+      console.log('ERR!', err);
     }
   };
 
@@ -49,7 +49,7 @@ const Form = styled.form`
   margin-bottom: 15px;
 `;
 
-const Input = styled.input.attrs({ type: "text" })`
+const Input = styled.input.attrs({ type: 'text' })`
   border: none;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
   width: 100%;

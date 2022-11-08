@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const DragHandle = () => {
   return (
@@ -41,8 +41,8 @@ const Wrapper = styled.div`
   padding: 3px;
   font-weight: 600;
 
-  color: "rgba(222, 222, 222, 1)";
-  background: "rgb(30,30,30)";
+  color: 'rgba(222, 222, 222, 1)';
+  background: 'rgb(30,30,30)';
   :hover {
     cursor: pointer;
   }

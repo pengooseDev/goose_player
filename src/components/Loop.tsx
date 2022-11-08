@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { loopAtom } from "../../src/atom";
+import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import { loopAtom } from '../../src/atom';
 
 const Loop = () => {
   const [isLoop, setIsLoop] = useRecoilState(loopAtom);
@@ -35,8 +35,8 @@ export default Loop;
 const Wrapper = styled.div<{ isLoop: boolean }>`
   width: 50px;
   font-weight: 600;
-  color: ${(props) => (props.isLoop ? "#111" : "rgba(222, 222, 222, 1)")};
-  background: ${(props) => (props.isLoop ? "rgba(222, 222, 222, 1)" : "#111")};
+  color: ${(props) => (props.isLoop ? '#111' : 'rgba(222, 222, 222, 1)')};
+  background: ${(props) => (props.isLoop ? 'rgba(222, 222, 222, 1)' : '#111')};
   padding: 10px;
   display: flex;
   align-items: center;
