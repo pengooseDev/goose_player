@@ -81,4 +81,8 @@ const Wrapper = styled.div<{ queueToggle: boolean }>`
   :hover {
     cursor: pointer;
   }
+
+  svg {
+    color: '#111';
+  }
 `;
