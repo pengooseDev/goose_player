@@ -83,6 +83,8 @@ const Wrapper = styled.div<{ queueToggle: boolean }>`
   }
 
   svg {
-    color: '#111';
+    path {
+      color: #111;
+    }
   }
 `;
