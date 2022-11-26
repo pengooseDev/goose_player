@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { queueAtom, queueIndexAtom } from '../atom';
-import { useRecoilState } from 'recoil';
-import DragHandle from './DragHandle';
-import { Draggable } from 'react-beautiful-dnd';
-import Delete from './Delete';
+import React from "react";
+import styled from "styled-components";
+import { queueAtom, queueIndexAtom } from "../atom";
+import { useRecoilState } from "recoil";
+import DragHandle from "./DragHandle";
+import { Draggable } from "react-beautiful-dnd";
+import Delete from "./Delete";
 
 interface infoProps {
   info: {
@@ -47,8 +47,8 @@ const List = ({ info, index }: infoProps) => {
             <Info>
               <Title>{title}</Title>
               <SubInfo>
-                <Duration>{duration}</Duration>
                 <Owner>{owner}</Owner>
+                <Duration>{duration}</Duration>
               </SubInfo>
             </Info>
           </Content>
@@ -75,7 +75,7 @@ const Wrapper = styled.div<{ index: number; queueIndex: number }>`
   justify-content: space-between;
   color: #cbd5e1;
   background: ${(props) =>
-    props.index == props.queueIndex ? 'rgba(222,222,222,0.15)' : ''};
+    props.index == props.queueIndex ? "rgba(222,222,222,0.15)" : ""};
   padding: 10px 0px 10px 10px;
   height: 100px;
   transition: 0.1s ease-in-out;
@@ -100,8 +100,12 @@ const Info = styled.div`
 
 const SubInfo = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-  justify-content: space-between;
+
+  margin-top: 0.5rem;
+  align-items: flex-end;
+  font-size: 10px;
 `;
 
 const Title = styled.div`
@@ -109,19 +113,19 @@ const Title = styled.div`
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 38px;
+  height: 2rem;
   word-wrap: brek-word;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;
 
-const Duration = styled.div`
-  font-size: 12.5px;
+const Owner = styled.div`
+  opacity: 0.5;
 `;
 
-const Owner = styled.div`
-  font-size: 12.5px;
+const Duration = styled.div`
+  opacity: 0.7;
 `;
 
 const Thumbnail = styled.div<ThumbnailProps>`
