@@ -118,7 +118,7 @@ const Container = styled(motion.div)`
   justify-content: center;
   transition: 0.2s ease-in-out;
   min-height: 100px;
-  max-height: 70vh;
+  max-height: 80vh;
 `;
 
 const Wrapper = styled(motion.div)`
