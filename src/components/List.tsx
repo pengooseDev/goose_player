@@ -125,7 +125,7 @@ const Owner = styled.div`
 `;
 
 const Duration = styled.div`
-  opacity: 0.7;
+  opacity: 0.55;
 `;
 
 const Thumbnail = styled.div<ThumbnailProps>`
