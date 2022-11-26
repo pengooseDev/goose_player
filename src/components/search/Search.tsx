@@ -118,6 +118,7 @@ const Container = styled(motion.div)`
   justify-content: center;
   transition: 0.2s ease-in-out;
   min-height: 100px;
+  max-height: 120%;
 `;
 
 const Wrapper = styled(motion.div)`
@@ -151,7 +152,6 @@ const Cards = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
-  max-height: 600px;
   overflow-y: auto;
   padding-right: 10px;
 `;
