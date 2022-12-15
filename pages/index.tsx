@@ -58,7 +58,7 @@ const TopContainer = () => {
 const Wrapper = styled.div`
   position: relative;
   height: 100vh;
-  background: #111;
+  background: #0b0b0b;
 `;
 
 const RotateComponent = styled.div`
@@ -67,7 +67,7 @@ const RotateComponent = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  background: #111;
+  background: #0b0b0b;
 `;
 
 /*
