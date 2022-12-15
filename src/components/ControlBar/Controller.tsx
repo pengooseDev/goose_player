@@ -4,7 +4,7 @@ import PrevBtn from './Prev';
 import Loop from './Loop';
 import Pause from './Pause';
 import Volume from './Volume';
-import IconSearch from './search/IconSearch';
+import IconSearch from '../search/IconSearch';
 import { useEffect, useState } from 'react';
 
 const Controller = () => {

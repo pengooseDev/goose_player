@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { loopAtom } from '../../src/atom';
+import { loopAtom } from '../../atom';
 
 const Loop = () => {
   const [isLoop, setIsLoop] = useRecoilState(loopAtom);

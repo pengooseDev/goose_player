@@ -7,16 +7,16 @@ import {
   loopAtom,
   durationAtom,
   currentTimeAtom,
-} from '../atom';
+} from '../../atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import React, { useEffect, useState, useRef } from 'react';
-import Controller from '../../src/components/Controller';
-import defaultImg from '../assets/img/Pengoose.jpeg';
+import Controller from '../ControlBar/Controller';
+import defaultImg from '../../assets/img/Pengoose.jpeg';
 import Image from 'next/image';
-import { queueUrlTrimmer } from '../../pages/api/controller/urlTrimmer';
+import { queueUrlTrimmer } from '../../../pages/api/controller/urlTrimmer';
 import Speaker from './Speaker';
-import DurationInfo from './DurationInfo';
+import DurationInfo from '../DurationInfo';
 
 const Player = () => {
   const [queue, setQueue] = useRecoilState(queueAtom);

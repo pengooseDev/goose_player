@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { volumeAtom } from '../atom';
+import { volumeAtom } from '../../atom';
 import { useRecoilState } from 'recoil';
 import React from 'react';
 

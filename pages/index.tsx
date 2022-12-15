@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Player from '../src/components/Player';
+import Player from '../src/components/Player/Player';
 import Search from '../src/components/search/Search';
 import styled from 'styled-components';
 import Queue from '../src/components/Queue';

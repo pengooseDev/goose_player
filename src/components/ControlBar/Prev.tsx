@@ -1,42 +1,42 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { searchToggleAtom, queueAtom, queueIndexAtom } from '../atom';
+import { searchToggleAtom, queueAtom, queueIndexAtom } from '../../atom';
 
-const NextBtn = () => {
+const PrevBtn = () => {
   const [queue, setQueue] = useRecoilState(queueAtom);
   const [queueIndex, setQueueIndex] = useRecoilState<number>(queueIndexAtom);
 
-  const next = () => {
-    //id로 한 번 확인하고 삭제된 노래일 경우 인덱스로 확인.
+  const clickHandler = () => {
+    if (queueIndex === 0) return moveLastSong();
 
-    const queueData = Object.entries(queue).map(([v, info], i) => v);
-    if (queueIndex >= queueData.length - 1) {
-      return setQueueIndex((prev) => 0);
-    }
-
-    return setQueueIndex((prev) => prev + 1);
+    return setQueueIndex((prev) => prev - 1);
   };
+
+  const moveLastSong = () => {
+    const queueData = Object.entries(queue).map(([v, info], i) => v);
+    return setQueueIndex((prev) => queueData.length - 1);
+  };
+
   return (
-    <Wrapper onClick={next}>
+    <Wrapper onClick={clickHandler}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        strokeWidth={1.5}
+        stroke-width="1.5"
         stroke="currentColor"
-        className="w-6 h-6"
       >
         <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"
         />
       </svg>
     </Wrapper>
   );
 };
 
-export default NextBtn;
+export default PrevBtn;
 
 const Wrapper = styled.div`
   width: 50px;

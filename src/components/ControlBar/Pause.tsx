@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { isPlayingAtom } from '../../src/atom';
+import { isPlayingAtom } from '../../atom';
 
 const Pause = () => {
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
