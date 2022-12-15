@@ -48,9 +48,9 @@ const Wrapper = styled.div`
   align-items: flex-end;
 
   width: 640px;
-  background: rgba(0, 0, 0, 0.5);
+  background: #232323;
   padding: 10px;
-  //border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 5px 5px;
 
   transform: skew(20deg) rotate(20deg);
 

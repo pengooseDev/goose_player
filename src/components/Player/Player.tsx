@@ -84,9 +84,9 @@ const Player = () => {
       <Left />
       <Speaker />
       <DurationInfo />
+      <Wall />
       {hasWindow && queueData[queueIndex] ? (
         <>
-          <Wall />
           <PlayerWrapper>
             <PlayerOverlay onClick={playingToggle} />
             <ReactPlayer
@@ -209,12 +209,13 @@ const Wrapper = styled.div`
 
 const Wall = styled.div`
   position: absolute;
-  bottom: -75px;
+  bottom: -125px;
   width: 150vh;
   height: 100%;
   z-index: -1;
-  background: bisque;
+  background: #111;
   padding: 1000px;
+  box-shadow: 0px 20px 50px rgba(1, 1, 1, 1);
 
   transform: skew(20deg) rotate(20deg);
 `;
