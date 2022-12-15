@@ -215,7 +215,8 @@ const Wall = styled.div`
   z-index: -1;
   background: #111;
   padding: 1000px;
-  box-shadow: 0px 20px 50px rgba(1, 1, 1, 1);
+  box-shadow: 0px 0px 50px rgba(1, 1, 1, 0.65);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 
   transform: skew(20deg) rotate(20deg);
 `;
