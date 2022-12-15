@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import NextBtn from './Next';
+import PrevBtn from './Prev';
 import Loop from './Loop';
 import Pause from './Pause';
 import Volume from './Volume';
@@ -19,6 +20,7 @@ const Controller = () => {
       <Right />
       {mount && (
         <>
+          <PrevBtn />
           <Pause />
           <NextBtn />
           <Loop />

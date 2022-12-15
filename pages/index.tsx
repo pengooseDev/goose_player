@@ -1,73 +1,73 @@
-import type { NextPage } from "next";
-import Player from "../src/components/Player";
-import Search from "../src/components/search/Search";
-import styled from "styled-components";
-import Queue from "../src/components/Queue";
-import QueueToggleBtn from "../src/components/QueueToggleBtn";
-import { useRecoilState } from "recoil";
-import { useEffect } from "react";
-import { queueToggleAtom, useSsrComplectedState, queueAtom } from "../src/atom";
+import type { NextPage } from 'next';
+import Player from '../src/components/Player';
+import Search from '../src/components/search/Search';
+import styled from 'styled-components';
+import Queue from '../src/components/Queue';
+import QueueToggleBtn from '../src/components/QueueToggleBtn';
+import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { queueToggleAtom, useSsrComplectedState, queueAtom } from '../src/atom';
 
 const Home: NextPage = () => {
-    const [queue, setQueueData] = useRecoilState(queueAtom);
-    useEffect(() => {
-        const value = localStorage.getItem("persistQueueAtom");
-        const queueData = !!value ? JSON.parse(value) : undefined;
-        if (!queueData) return;
-        const newData = Object.entries(queueData).map((v, i) => v[1]);
+  const [queue, setQueueData] = useRecoilState(queueAtom);
+  useEffect(() => {
+    const value = localStorage.getItem('persistQueueAtom');
+    const queueData = !!value ? JSON.parse(value) : undefined;
+    if (!queueData) return;
+    const newData = Object.entries(queueData).map((v, i) => v[1]);
 
-        //@ts-ignore;
-        setQueueData((prev) => newData[0]);
-    }, []);
+    //@ts-ignore;
+    setQueueData((prev) => newData[0]);
+  }, []);
 
-    return (
-        <>
-            <TopContainer />
-            <Queue />
-        </>
-    );
+  return (
+    <>
+      <TopContainer />
+      <Queue />
+    </>
+  );
 };
 
 export default Home;
 
 const TopContainer = () => {
-    const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
+  const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
-    const overlayToggleHandler = () => {
-        setQueueToggle((prev) => false);
-    };
+  const overlayToggleHandler = () => {
+    setQueueToggle((prev) => false);
+  };
 
-    /* RecoilPersist SSR */
-    const setSsrCompleted = useSsrComplectedState();
-    useEffect(setSsrCompleted, [setSsrCompleted]);
+  /* RecoilPersist SSR */
+  const setSsrCompleted = useSsrComplectedState();
+  useEffect(setSsrCompleted, [setSsrCompleted]);
 
-    return (
-        <>
-            <Wrapper onClick={overlayToggleHandler}>
-                <RotateComponent>
-                    <Player />
-                    <Search />
-                </RotateComponent>
-            </Wrapper>
+  return (
+    <>
+      <Wrapper onClick={overlayToggleHandler}>
+        <RotateComponent>
+          <Player />
+          <Search />
+        </RotateComponent>
+      </Wrapper>
 
-            <QueueToggleBtn />
-        </>
-    );
+      <QueueToggleBtn />
+    </>
+  );
 };
 
 const Wrapper = styled.div`
-    position: relative;
-    height: 100vh;
-    background: #111;
+  position: relative;
+  height: 100vh;
+  background: #111;
 `;
 
 const RotateComponent = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #111;
 `;
 
 /*
