@@ -91,3 +91,9 @@ export const useSsrComplectedState = () => {
   const setSsrCompleted = useSetRecoilState(ssrCompletedState);
   return () => setSsrCompleted(true);
 };
+
+/* PIP */
+export const PIPAtom = atom<boolean>({
+  key: 'PIPAtom',
+  default: false,
+});

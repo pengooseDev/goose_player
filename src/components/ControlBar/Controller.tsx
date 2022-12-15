@@ -4,6 +4,7 @@ import PrevBtn from './Prev';
 import Loop from './Loop';
 import Pause from './Pause';
 import Volume from './Volume';
+import PIPBtn from './PIPBtn';
 import IconSearch from '../search/IconSearch';
 import { useEffect, useState } from 'react';
 
@@ -24,8 +25,9 @@ const Controller = () => {
           <Pause />
           <NextBtn />
           <Loop />
-          <IconSearch />
           <Volume />
+          <PIPBtn />
+          <IconSearch />
         </>
       )}
     </Wrapper>
@@ -33,13 +35,13 @@ const Controller = () => {
 };
 
 const Right = styled.div`
-  background: teal;
+  background: black;
 `;
 
 const Wrapper = styled.div`
   position: relative;
-  top: 10px;
-  right: 20px;
+  top: 0px;
+  right: 0px;
 
   display: flex;
   justify-content: center;
@@ -48,7 +50,7 @@ const Wrapper = styled.div`
   width: 640px;
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
-  border-radius: 0px 0px 5px 5px;
+  //border-radius: 0px 0px 5px 5px;
 
   transform: skew(20deg) rotate(20deg);
 

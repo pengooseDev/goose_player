@@ -6,7 +6,6 @@ const Pause = () => {
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingAtom);
 
   const pauseToggleHandler = () => {
-    console.log(isPlaying);
     setIsPlaying((prev) => !prev);
   };
 

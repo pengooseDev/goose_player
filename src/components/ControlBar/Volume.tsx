@@ -27,6 +27,7 @@ const VolumeInput = styled.input.attrs({
   box-shadow: 0px 0px 5px rgba(222, 222, 222, 0.5);
 
   margin-left: 15px;
+  margin-right: 15px;
 
   :focus {
     outline: none;

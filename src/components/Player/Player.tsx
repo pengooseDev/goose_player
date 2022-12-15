@@ -7,6 +7,7 @@ import {
   loopAtom,
   durationAtom,
   currentTimeAtom,
+  PIPAtom,
 } from '../../atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
@@ -26,6 +27,7 @@ const Player = () => {
   const [currentTime, setCurrentTime] = useRecoilState(currentTimeAtom);
   const isLoop = useRecoilValue(loopAtom);
   const volume = useRecoilValue(volumeAtom);
+  const isPIP = useRecoilValue(PIPAtom);
   const playerRef = useRef(null);
 
   const [hasWindow, setHasWindow] = useState(false);
@@ -84,6 +86,7 @@ const Player = () => {
       <DurationInfo />
       {hasWindow && queueData[queueIndex] ? (
         <>
+          <Wall />
           <PlayerWrapper>
             <PlayerOverlay onClick={playingToggle} />
             <ReactPlayer
@@ -97,6 +100,7 @@ const Player = () => {
               onStart={onStartHandler}
               onEnded={onEndedHandler}
               onProgress={onProgressHandler}
+              pip={isPIP}
             />
             <VideoRange
               onChange={seekHandler}
@@ -147,10 +151,11 @@ const Right = styled.div<{ queueData: string[] }>`
   position: absolute;
   margin-left: 685px;
   margin-bottom: ${(props) =>
-    props.queueData.length === 0 ? '-145px' : '-160px'};
+    props.queueData.length === 0 ? '-222px' : '-222px'};
   transform: skew(-20deg) rotate(-20deg);
-  box-shadow: 0px 0px 10px bisque;
-  height: ${(props) => (props.queueData.length === 0 ? '362px' : '376px')};
+  box-shadow: 5px 0px 10px bisque;
+  height: ${(props) =>
+    props.queueData.length === 0 ? '445px' : '445px'}; //426
   width: 5px;
   background: black;
 `;
@@ -181,7 +186,6 @@ const VideoRange = styled.input.attrs({ type: 'range' })`
     width: 10px;
     height: 100%;
     background: whitesmoke;
-
     cursor: pointer;
     box-shadow: -100vw 0 0 100vw rgba(0, 0, 0, 0.75);
   }
@@ -200,6 +204,19 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  transform: skew(0deg) rotate(0deg);
+`;
+
+const Wall = styled.div`
+  position: absolute;
+  bottom: -75px;
+  width: 150vh;
+  height: 100%;
+  z-index: -1;
+  background: bisque;
+  padding: 1000px;
+
+  transform: skew(20deg) rotate(20deg);
 `;
 
 const PlayerWrapper = styled.div`
