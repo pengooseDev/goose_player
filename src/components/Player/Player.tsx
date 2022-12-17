@@ -85,6 +85,7 @@ const Player = () => {
       <Speaker />
       <DurationInfo />
       <Wall />
+      <WallRight />
       {hasWindow && queueData[queueIndex] ? (
         <>
           <PlayerWrapper>
@@ -209,16 +210,30 @@ const Wrapper = styled.div`
 
 const Wall = styled.div`
   position: absolute;
-  bottom: -125px;
-  width: 150vh;
+  bottom: -225px;
+  width: 1550px;
   height: 100%;
+  padding: 1000px 0px;
+  padding-left: 1000px;
   z-index: -1;
   background: #111;
-  padding: 1000px;
   box-shadow: 0px 0px 50px rgba(1, 1, 1, 0.65);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 20px solid rgba(0, 0, 0, 0.1);
 
   transform: skew(20deg) rotate(20deg);
+`;
+
+const WallRight = styled.div`
+  position: absolute;
+  bottom: -343px;
+  margin-left: 2955px;
+  width: 1000px;
+  padding: 1000px 0px;
+  z-index: -1;
+  background: #202020;
+  border-bottom: 20px solid rgba(0, 0, 0, 0.1);
+
+  transform: skew(-40deg) rotate(-40deg);
 `;
 
 const PlayerWrapper = styled.div`
