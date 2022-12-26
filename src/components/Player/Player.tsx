@@ -170,7 +170,7 @@ const VideoRange = styled.input.attrs({ type: 'range' })`
   margin-left: 0px; //이거 안하면 뒤틀림.
   height: 15px;
   width: 100%;
-  background: rgba(222, 222, 222, 0.6);
+  background: rgba(111, 111, 111, 0.8);
   :focus {
     outline: none;
   }
@@ -188,7 +188,7 @@ const VideoRange = styled.input.attrs({ type: 'range' })`
     height: 100%;
     background: whitesmoke;
     cursor: pointer;
-    box-shadow: -100vw 0 0 100vw rgba(0, 0, 0, 0.75);
+    box-shadow: -100vw 0 0 100vw rgba(5, 5, 5, 0.8);
   }
 `;
 
