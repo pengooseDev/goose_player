@@ -211,10 +211,9 @@ const Wrapper = styled.div`
 const Wall = styled.div`
   position: absolute;
   bottom: -225px;
-  width: 1550px;
+  width: 100vw;
   height: 100%;
   padding: 1000px 0px;
-  padding-left: 1000px;
   z-index: -1;
   background: #111;
   box-shadow: 0px 0px 50px rgba(1, 1, 1, 0.65);
