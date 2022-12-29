@@ -231,7 +231,6 @@ const WallRight = styled.div`
   z-index: -1;
   background: #202020;
   border-bottom: 20px solid rgba(0, 0, 0, 0.1);
-
   transform: skew(-40deg) rotate(-40deg);
 `;
 
