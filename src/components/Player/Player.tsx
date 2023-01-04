@@ -18,6 +18,7 @@ import Image from 'next/image';
 import { queueUrlTrimmer } from '../../../pages/api/controller/urlTrimmer';
 import Speaker from './Speaker';
 import DurationInfo from '../DurationInfo';
+import HydrationHandler from '../utils/HydrationHandler';
 
 const Player = () => {
   const [queue, setQueue] = useRecoilState(queueAtom);
