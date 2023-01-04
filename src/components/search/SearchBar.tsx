@@ -14,13 +14,16 @@ const SearchBar = () => {
   const searchHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading((prev) => !prev);
+
     try {
       const res = await axios.get(API_URL_SEARCH, {
         params: { query: inputValue },
       });
+
       const {
         data: { result },
       } = res;
+
       setAxiosData((prev) => result);
       setLoading((prev) => !prev);
     } catch (err) {
