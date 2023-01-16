@@ -14,7 +14,7 @@ const IconSearch = () => {
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        strokeWidth={1.5}
+        strokeWidth={2}
         stroke="currentColor"
         className="w-6 h-6"
       >
@@ -31,11 +31,15 @@ const IconSearch = () => {
 export default IconSearch;
 
 const Wrapper = styled.div<{ toggleState: boolean }>`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
   width: 50px;
   font-weight: 600;
-  color: ${(props) => (props.toggleState ? '#111' : 'rgba(222, 222, 222, 1)')};
+  color: ${(props) => (props.toggleState ? 'rgba(222, 222, 222, 1)' : '#111')};
   background: ${(props) =>
-    props.toggleState ? 'rgba(110, 110, 110, 1)' : '#111'};
+    props.toggleState ? 'rgba(110, 110, 110, 0)' : 'rgba(110, 110, 110, 1)'};
   padding: 10px;
   display: flex;
   align-items: center;

@@ -113,7 +113,7 @@ const containerVar = {
 
 const Container = styled(motion.div)`
   position: absolute;
-  top: 10%;
+  top: 15%;
   display: flex;
   justify-content: center;
   transition: 0.2s ease-in-out;

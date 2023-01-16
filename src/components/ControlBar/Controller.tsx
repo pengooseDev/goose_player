@@ -5,7 +5,6 @@ import Loop from './Loop';
 import Pause from './Pause';
 import Volume from './Volume';
 import PIPBtn from './PIPBtn';
-import IconSearch from '../search/IconSearch';
 import { useEffect, useState } from 'react';
 
 const Controller = () => {
@@ -27,7 +26,6 @@ const Controller = () => {
           <Loop />
           <Volume />
           <PIPBtn />
-          <IconSearch />
         </>
       )}
     </Wrapper>
