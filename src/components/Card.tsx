@@ -9,7 +9,6 @@ const Card = ({ data }: { data: Video }) => {
   const { title, id, thumbnail, duration, owner } = data;
   const [queue, setQueue] = useRecoilState(queueAtom);
   const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
-
   const isDuplicate = Boolean(queue.filter((i) => i.id === id).length);
 
   const cardClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
