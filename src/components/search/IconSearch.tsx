@@ -34,7 +34,7 @@ const Wrapper = styled.div<{ toggleState: boolean }>`
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 100;
+  z-index: 500;
   width: 50px;
   font-weight: 600;
   color: ${(props) => (props.toggleState ? 'rgba(222, 222, 222, 1)' : '#111')};
