@@ -11,16 +11,12 @@ import IconSearch from '../src/components/search/IconSearch';
 
 const Home: NextPage = () => {
   const [queue, setQueueData] = useRecoilState(queueAtom);
-  const [hasWindow, setHasWindow] = useState(false);
 
   useEffect(() => {
     const value = localStorage.getItem('persistQueueAtom');
     const queueData = !!value ? JSON.parse(value) : undefined;
     if (!queueData) return;
     const newData = Object.entries(queueData).map((v, i) => v[1]);
-    if (typeof window !== 'undefined') {
-      setHasWindow(true);
-    }
 
     //@ts-ignore;
     setQueueData((prev) => newData[0]);
@@ -28,7 +24,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      {hasWindow && <IconSearch />}
+      <IconSearch />
       <TopContainer />
       <Queue />
     </>
