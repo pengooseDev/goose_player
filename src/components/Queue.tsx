@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import List from './List';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 
 interface Info {
   id: string;
@@ -21,6 +22,9 @@ const Queue = () => {
   const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
   const [queueIndex, setQueueIndex] = useRecoilState(queueIndexAtom);
 
+  useEffect(() => {
+    if (!queue.length) setQueueToggle((prev) => false);
+  }, [queue]);
   const dragEndHandler = (info: DropResult) => {
     const { source, destination } = info;
     if (!destination) return; //Cancel Drag exception
