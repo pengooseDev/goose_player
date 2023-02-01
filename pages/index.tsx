@@ -3,11 +3,10 @@ import Player from '../src/components/Player/Player';
 import Search from '../src/components/search/Search';
 import styled from 'styled-components';
 import Queue from '../src/components/Queue';
-import QueueToggleBtn from '../src/components/QueueToggleBtn';
 import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import { queueToggleAtom, useSsrComplectedState, queueAtom } from '../src/atom';
-import IconSearch from '../src/components/search/IconSearch';
+import Menu from '../src/components/ControlBar/Menu';
 
 const Home: NextPage = () => {
   const [queue, setQueueData] = useRecoilState(queueAtom);
@@ -24,7 +23,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <IconSearch />
+      <Menu />
       <TopContainer />
       <Queue />
     </>
@@ -52,8 +51,6 @@ const TopContainer = () => {
           <Search />
         </RotateComponent>
       </Wrapper>
-
-      <QueueToggleBtn />
     </>
   );
 };
