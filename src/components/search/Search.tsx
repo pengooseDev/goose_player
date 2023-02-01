@@ -10,7 +10,8 @@ import styled from 'styled-components';
 import SearchBar from '../../components/search/SearchBar';
 import { AnimatePresence, motion } from 'framer-motion';
 import loadingGIF from '../../assets/img/loading.gif';
-import searchImgage from '../../assets/img/search.png';
+//import searchImgage from '../../assets/img/search.png';
+import searchGooseImgage from '../../assets/img/searchGoose.png';
 import React from 'react';
 import Image from 'next/image';
 
@@ -43,15 +44,20 @@ const Search = () => {
                   <Exit />
                 </Title>
                 <SearchBar />
-                <Filter>
-                  <Image src={searchImgage} />
-                </Filter>
+                {!axiosData.length && !isLoading ? (
+                  <SearchFilter>
+                    <Image src={searchGooseImgage} />
+                  </SearchFilter>
+                ) : null}
                 {isLoading ? (
-                  <Loading>
-                    <LoadingGif>
-                      <Image src={loadingGIF} />
-                    </LoadingGif>
-                  </Loading>
+                  <LoadingFilter>
+                    <Loading>
+                      <LoadingGif>
+                        <Image src={loadingGIF} />
+                      </LoadingGif>
+                    </Loading>
+                    <Image src={searchGooseImgage} />
+                  </LoadingFilter>
                 ) : (
                   <Cards>
                     {axiosData.map((videoData, i) => {
@@ -74,18 +80,6 @@ const Search = () => {
 };
 
 export default Search;
-
-const LoadingGif = styled.div`
-  width: 250px;
-  height: 250px;
-`;
-
-const Loading = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 600px;
-`;
 
 const Overlay = styled.div`
   position: fixed;
@@ -114,12 +108,47 @@ const containerVar = {
   },
 };
 
-const Filter = styled(motion.div)`
-  background: rgba(0, 0, 0, 0.2);
+const SearchFilter = styled(motion.div)`
+  background: rgba(12, 12, 12, 0.56);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 5px;
   padding-left: 50px;
-  filter: grayscale(15%) brightness(0.25) blur(0.5px)
-    drop-shadow(0px 0px 5px black);
+
+  img {
+    filter: grayscale(100%) brightness(0.25) invert(100%) blur(0px)
+      drop-shadow(0px 0px 5px bisque);
+  }
+`;
+
+const LoadingFilter = styled(motion.div)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding-left: 50px;
+
+  img {
+    filter: grayscale(100%) brightness(0.25) invert(0%) blur(0px)
+      drop-shadow(0px 0px 5px bisque);
+  }
+`;
+
+const LoadingGif = styled.div`
+  width: 250px;
+  height: 250px;
+`;
+
+const Loading = styled.div`
+  position: absolute;
+  left: 100px;
+  top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Container = styled(motion.div)`
@@ -129,7 +158,7 @@ const Container = styled(motion.div)`
   justify-content: center;
   transition: 0.2s ease-in-out;
   min-height: 100px;
-  height: 80vh;
+  //height: 80vh;
   max-height: 80vh;
 `;
 
