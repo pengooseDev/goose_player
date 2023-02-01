@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import SearchBar from '../../components/search/SearchBar';
 import { AnimatePresence, motion } from 'framer-motion';
 import loadingGIF from '../../assets/img/loading.gif';
+import searchImgage from '../../assets/img/search.png';
 import React from 'react';
 import Image from 'next/image';
 
@@ -17,7 +18,6 @@ const Search = () => {
   const [axiosData, setAxiosData] = useRecoilState(axiosAtom);
   const [isLoading, setLoading] = useRecoilState<boolean>(loadingAtom);
   const [searchToggle, setSearchToggle] = useRecoilState(searchToggleAtom);
-  const [queueToggle, setQueueToggle] = useRecoilState(queueToggleAtom);
 
   const overlayToggleHandler = () => {
     setSearchToggle((prev) => false);
@@ -43,6 +43,9 @@ const Search = () => {
                   <Exit />
                 </Title>
                 <SearchBar />
+                <Filter>
+                  <Image src={searchImgage} />
+                </Filter>
                 {isLoading ? (
                   <Loading>
                     <LoadingGif>
@@ -111,6 +114,14 @@ const containerVar = {
   },
 };
 
+const Filter = styled(motion.div)`
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding-left: 50px;
+  filter: grayscale(15%) brightness(0.25) blur(0.5px)
+    drop-shadow(0px 0px 5px black);
+`;
+
 const Container = styled(motion.div)`
   position: absolute;
   top: 15%;
@@ -118,6 +129,7 @@ const Container = styled(motion.div)`
   justify-content: center;
   transition: 0.2s ease-in-out;
   min-height: 100px;
+  height: 80vh;
   max-height: 80vh;
 `;
 
