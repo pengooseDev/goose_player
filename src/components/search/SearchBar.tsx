@@ -13,7 +13,8 @@ const SearchBar = () => {
   /* onSubmitHandler */
   const searchHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading((prev) => !prev);
+    setAxiosData((prev) => []);
+    setLoading((prev) => true);
 
     try {
       const res = await axios.get(API_URL_SEARCH, {
@@ -25,7 +26,7 @@ const SearchBar = () => {
       } = res;
 
       setAxiosData((prev) => result);
-      setLoading((prev) => !prev);
+      setLoading((prev) => false);
     } catch (err) {
       console.log('ERR!', err);
     }

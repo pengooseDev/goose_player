@@ -43,6 +43,7 @@ export default async function handler(
             for (const item in data) {
               if (!item) return false;
             }
+
             return true;
             // !Object.values(data)
             //     .map((value) => !!value)
