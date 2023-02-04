@@ -7,24 +7,32 @@
 
 ### Stack
 
--   NextJS
--   ReactJS
--   recoil
--   styled-components
--   react-beautiful-dnd
--   axios
-
+- NextJS
+- ReactJS
+- recoil
+- styled-components
+- react-beautiful-dnd
+- axios
 
 ---
+
 ### Search Music
+
 ![Search](https://user-images.githubusercontent.com/73521518/197935459-3980d30c-a731-41e8-9b46-3d3203241769.PNG)
 
 ### Add Music
+
 ![Add](https://user-images.githubusercontent.com/73521518/197935466-359a4317-86c3-445b-a894-3e87513c8c07.PNG)
 
- Just click the Music to add your Playlist 
+Just click the Music to add your Playlist
 
 ### PlayList
+
 ![Queue](https://user-images.githubusercontent.com/73521518/197935449-211dd5b4-a333-4671-a0d8-434c933e3969.PNG)
 
 You can handle musics in your Playlist (delete, reordering with Drag&Drop)
+
+---
+
+Attribution
+<a href="https://www.flaticon.com/free-icons/penguin" title="penguin icons">Penguin icons created by Freepik - Flaticon</a>
