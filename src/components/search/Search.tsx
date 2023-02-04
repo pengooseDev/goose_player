@@ -126,7 +126,7 @@ const LoadingFilter = styled(motion.div)<FilterProps>`
   border-radius: 5px;
   padding-left: 50px;
   background: ${(props) =>
-    props.isLoading ? 'rgba(12, 12, 12, 0.85)' : 'rgba(12, 12, 12, 0.5)'};
+    props.isLoading ? 'rgba(12, 12, 12, 0.85)' : 'rgba(100, 100, 100, 0.5)'};
   transition: ease-in-out 0.25s;
   height: 100%;
   overflow: hidden;

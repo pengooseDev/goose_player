@@ -30,7 +30,11 @@ const IconSearch = () => {
 
 export default IconSearch;
 
-const Wrapper = styled.div<{ toggleState: boolean }>`
+interface WrapperProps {
+  toggleState: boolean;
+}
+
+const Wrapper = styled.div<WrapperProps>`
   width: 50px;
   font-weight: 600;
   color: ${(props) => (props.toggleState ? 'rgba(222, 222, 222, 1)' : '#111')};
