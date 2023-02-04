@@ -1,4 +1,17 @@
-# GoosePlayer
+<div align="center">
+  <a href="https://pengoose.dev/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="public/main.PNG">
+      <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/73521518/216755475-3dd1c8ef-1bf0-4024-b5cf-0d28fc6e439d.png">
+      <img alt="IMAGE" src="http://LIGHT_IMAGE_URL.png">
+    </picture>
+  </a>
+  <h3>Goose Player</h3>
+</div>
+
+---
+
+# Project
 
 ![캡처](https://user-images.githubusercontent.com/73521518/196152316-810ea835-d55e-433c-9c3b-41e54a77cc4d.PNG)
 
@@ -34,5 +47,5 @@ You can handle musics in your Playlist (delete, reordering with Drag&Drop)
 
 ---
 
-Attribution
+### Attribution
 <a href="https://www.flaticon.com/free-icons/penguin" title="penguin icons">Penguin icons created by Freepik - Flaticon</a>
