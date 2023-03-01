@@ -25,63 +25,61 @@ const Search = () => {
   };
 
   return (
-    <>
-      <AnimatePresence>
-        {searchToggle ? (
-          <>
-            <Overlay onClick={overlayToggleHandler}></Overlay>
+    <AnimatePresence>
+      {searchToggle ? (
+        <>
+          <Overlay onClick={overlayToggleHandler}></Overlay>
 
-            <Container
-              variants={containerVar}
-              initial="from"
-              animate="to"
-              exit="exit"
-            >
-              <Wrapper>
-                <Title>
-                  <span>Search</span>
+          <Container
+            variants={containerVar}
+            initial="from"
+            animate="to"
+            exit="exit"
+          >
+            <Wrapper>
+              <Title>
+                <span>Search</span>
 
-                  <Exit />
-                </Title>
-                <SearchBar />
-                <AnimatePresence>
-                  {!axiosData.length ? (
-                    <LoadingFilter isLoading={isLoading}>
-                      <AnimatePresence>
-                        {isLoading ? (
-                          <Loading>
-                            <LoadingGif
-                              variants={loadingVar}
-                              initial="initial"
-                              animate="animate"
-                              exit="exit"
-                            >
-                              <Image src={loadingGIF} />
-                            </LoadingGif>
-                          </Loading>
-                        ) : null}
-                      </AnimatePresence>
-                      <Image src={searchGooseImgage} />
-                    </LoadingFilter>
-                  ) : (
-                    <Cards>
-                      {axiosData.map((videoData, i) => {
-                        return (
-                          <Card
-                            key={`${i}search${videoData.id}`}
-                            data={videoData}
-                          />
-                        );
-                      })}
-                    </Cards>
-                  )}
-                </AnimatePresence>
-              </Wrapper>
-            </Container>
-          </>
-        ) : null}
-      </AnimatePresence>
-    </>
+                <Exit />
+              </Title>
+              <SearchBar />
+              <AnimatePresence>
+                {!axiosData.length ? (
+                  <LoadingFilter isLoading={isLoading}>
+                    <AnimatePresence>
+                      {isLoading ? (
+                        <Loading>
+                          <LoadingGif
+                            variants={loadingVar}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                          >
+                            <Image src={loadingGIF} />
+                          </LoadingGif>
+                        </Loading>
+                      ) : null}
+                    </AnimatePresence>
+                    <Image src={searchGooseImgage} />
+                  </LoadingFilter>
+                ) : (
+                  <Cards>
+                    {axiosData.map((videoData, i) => {
+                      return (
+                        <Card
+                          key={`${i}search${videoData.id}`}
+                          data={videoData}
+                        />
+                      );
+                    })}
+                  </Cards>
+                )}
+              </AnimatePresence>
+            </Wrapper>
+          </Container>
+        </>
+      ) : null}
+    </AnimatePresence>
   );
 };
 
