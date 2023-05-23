@@ -11,9 +11,10 @@
 
 ---
 
+
 # Project
 
-![캡처](https://user-images.githubusercontent.com/73521518/196152316-810ea835-d55e-433c-9c3b-41e54a77cc4d.PNG)
+![image](https://github.com/pengooseDev/goose_player/assets/73521518/c0cdeb5b-bf9c-401e-acb4-a097e39cc114)
 
 > musicPlayer with based on youtube
 > '22.10.03 ~ '22.10.16
