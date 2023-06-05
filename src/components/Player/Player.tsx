@@ -48,7 +48,7 @@ const Player = () => {
 
   const seekHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!playerRef?.current) return;
-    const targetTime = Number(e.currentTarget.value);
+		const targetTime = Math.max(0, Number(e.currentTarget.value));
     setCurrentTime(targetTime);
     //@ts-ignore
     playerRef.current.seekTo(targetTime);
